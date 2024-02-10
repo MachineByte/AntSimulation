@@ -3,11 +3,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
-<?import application.startproject.SampleController?>
+<?import application.view.SampleController?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="application.startproject.SampleController"
+      fx:controller="application.view.SampleController"
       alignment="CENTER"
       spacing="10">
     <TextField fx:id="inputField" promptText="Enter text"/>

@@ -1,4 +1,4 @@
-package application.startproject;
+package application.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
