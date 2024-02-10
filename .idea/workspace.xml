@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="">
+    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/application/view/FieldController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application/view/workerAnt.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/startproject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/startproject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/startproject/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/startproject/SampleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application/startproject/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/startproject/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/SampleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +34,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -46,23 +57,58 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_directory_selection": "D:/Файлы/Java projects/AntSimuation/src/main/java/application/view",
+    "last_opened_file_path": "C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "File.Encoding"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Файлы\Java projects\AntSimuation\src\main\resources\application\view" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="application.startproject" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.application.view.Habitat">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="application.startproject.Main" />
+      <option name="MAIN_CLASS_NAME" value="application.view.Main" />
       <module name="startProject.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="application.view.Habitat" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.view.Habitat" />
+      <module name="startProject.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.application.view.Habitat" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.application.view.Habitat" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -72,8 +118,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707552297433</updated>
-      <workItem from="1707552298759" duration="932000" />
+      <workItem from="1707552298759" duration="4900000" />
+      <workItem from="1707561605404" duration="3712000" />
+      <workItem from="1707565346645" duration="5130000" />
     </task>
+    <task id="LOCAL-00001" summary="test commit">
+      <created>1707553258166</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1707553258166</updated>
+    </task>
+    <task id="LOCAL-00002" summary="создана структура, добавлены файлы из прошлого тестового проекта, создана папка view">
+      <created>1707554132189</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1707554132189</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,5 +152,27 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test commit" />
+    <MESSAGE value="создана структура, добавлены файлы из прошлого тестового проекта, создана папка view" />
+    <MESSAGE value="(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами" />
+    <option name="LAST_COMMIT_MESSAGE" value="(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/application/view/Habitat.java</url>
+          <line>26</line>
+          <properties field="warriorAppearanceChance" class="application.view.Habitat" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

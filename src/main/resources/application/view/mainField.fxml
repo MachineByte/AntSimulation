@@ -1,0 +1,27 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<?import java.lang.*?>-->
+<!--<?import java.util.*?>-->
+<!--<?import javafx.scene.*?>-->
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
+
+<!--<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.FieldController">-->
+<!--    <children>-->
+<!--        <GridPane layoutX="27.0" layoutY="7.0" prefHeight="155.0" prefWidth="595.0">-->
+<!--            <columnConstraints>-->
+<!--                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="173.0" />-->
+<!--                <ColumnConstraints hgrow="SOMETIMES" maxWidth="429.0" minWidth="10.0" prefWidth="427.0" />-->
+<!--            </columnConstraints>-->
+<!--            <rowConstraints>-->
+<!--                <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />-->
+<!--                <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />-->
+<!--            </rowConstraints>-->
+<!--            <children>-->
+<!--                <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#pressedButton" prefHeight="25.0" prefWidth="125.0" text="Oh no cringe" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />-->
+<!--                <CheckBox fx:id="im_rus" mnemonicParsing="false" onAction="#is_checked" text="ярусский" GridPane.columnIndex="1" />-->
+<!--                <CheckBox fx:id="what" mnemonicParsing="false" onAction="#is_checked" text="чё" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
+<!--            </children>-->
+<!--        </GridPane>-->
+<!--    </children>-->
+<!--</AnchorPane>-->

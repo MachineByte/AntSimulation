@@ -23,16 +23,17 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-application {
-    mainModule = 'application.view'
-    mainClass = 'application.view.Main'
-}
+//application {
+//    mainModule = 'application.view'
+//    mainClass = 'application.view.Main'
+//}
 
 javafx {
     version = '17.0.1'
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
+mainClassName = "application.view.Main"
 dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
