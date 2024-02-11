@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Обновление коммита. добавление Измененных файлов">
+    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Выполнен глобальный рефакторинг. Реализованы вероятности появления и времена появления. Исправлен баг с некорректной работой кнопок">
+      <change afterPath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/IBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/IBehaviour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -69,6 +68,7 @@
       <recent name="D:\Файлы\Java projects\AntSimuation\src\main\resources\application\view" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="application.view" />
       <recent name="application.startproject" />
     </key>
   </component>
@@ -115,7 +115,7 @@
       <workItem from="1707561605404" duration="3712000" />
       <workItem from="1707565346645" duration="5425000" />
       <workItem from="1707578798642" duration="671000" />
-      <workItem from="1707651994960" duration="8398000" />
+      <workItem from="1707651994960" duration="16973000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <created>1707553258166</created>
@@ -145,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707652124926</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Выполнен глобальный рефакторинг. Реализованы вероятности появления и времена появления. Исправлен баг с некорректной работой кнопок">
+      <created>1707662222875</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707662222875</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +175,8 @@
     <MESSAGE value="(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами" />
     <MESSAGE value="Появление разных типов муравьев на поле, обработка нажатия клавиш для запуска и остановки." />
     <MESSAGE value="Обновление коммита. добавление Измененных файлов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновление коммита. добавление Измененных файлов" />
+    <MESSAGE value="Выполнен глобальный рефакторинг. Реализованы вероятности появления и времена появления. Исправлен баг с некорректной работой кнопок" />
+    <option name="LAST_COMMIT_MESSAGE" value="Выполнен глобальный рефакторинг. Реализованы вероятности появления и времена появления. Исправлен баг с некорректной работой кнопок" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

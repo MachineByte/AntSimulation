@@ -5,12 +5,18 @@ import application.models.implement.WarriorAnt;
 import application.models.implement.WorkerAnt;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -20,14 +26,14 @@ public class Habitat extends Application {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 500;
     private final ArrayList<AbstractAnt> arrayOfAnts = new ArrayList<>();
-
-    private Group root = new Group();
-    private final Scene scene = new Scene(root, WIDTH, HEIGHT);
+    PaneController controller;
+    private Pane pane;
+    private Text timeElement;
     private Timer timer = null;
-    private long startTime; // Время начала симуляции
+    private long startTime;
 
     private void update(long timePassed) {
-        AbstractAnt newAnt = null;
+        AbstractAnt newAnt;
         Random random = new Random();
         double probability = random.nextDouble();
 
@@ -42,11 +48,12 @@ public class Habitat extends Application {
         }
 
         Platform.runLater(() -> {
+            controller.setText((float) timePassed / 1000 +" c");
             for (AbstractAnt ant : arrayOfAnts) {
-                if (ant.getClass() == WorkerAnt.class && !root.getChildren().contains(WorkerAnt.imageView)) {
-                    root.getChildren().add(WorkerAnt.imageView);
-                } else if (ant.getClass() == WarriorAnt.class && !root.getChildren().contains(WarriorAnt.imageView)) {
-                    root.getChildren().add(WarriorAnt.imageView);
+                if (ant.getClass() == WorkerAnt.class && !pane.getChildren().contains(WorkerAnt.imageView)) {
+                    pane.getChildren().add(WorkerAnt.imageView);
+                } else if (ant.getClass() == WarriorAnt.class && !pane.getChildren().contains(WarriorAnt.imageView)) {
+                    pane.getChildren().add(WarriorAnt.imageView);
                 }
             }
         });
@@ -56,6 +63,14 @@ public class Habitat extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(Habitat.class.getResource("mainField.fxml"));
+        Parent parent = fxmlLoader.load();
+        controller = fxmlLoader.getController();
+        pane = controller.pane;
+        timeElement = controller.timeElement;
+
+        Scene scene = new Scene(parent, WIDTH, HEIGHT);
+
         startTime = System.currentTimeMillis(); // Запоминаем время начала симуляции
 
         primaryStage.setScene(scene);
@@ -63,9 +78,10 @@ public class Habitat extends Application {
 
         // Запускаем таймер, который будет вызывать метод update каждые 100 миллисекунд
         scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.B) { // Запуск симуляции при нажатии клавиши "S"
+            if (event.getCode() == KeyCode.B) {
                 if (timer == null) {
                     timer = new Timer();
+                    startTime = System.currentTimeMillis();
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
@@ -75,16 +91,14 @@ public class Habitat extends Application {
                         }
                     }, 0, 100);
                 }
-            } else if (event.getCode() == KeyCode.E) { // Остановка симуляции при нажатии клавиши "P"
+            } else if (event.getCode() == KeyCode.E) {
                 if (timer != null) {
                     timer.cancel();
                     timer = null;
                     arrayOfAnts.clear();
-                    root.getChildren().clear();
+                    pane.getChildren().clear();
                 }
             }
-
-            System.out.println(timer);
         });
     }
 }
