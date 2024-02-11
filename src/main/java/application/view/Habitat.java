@@ -7,8 +7,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -19,70 +17,43 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Habitat extends Application {
-    private Timer m_timer = new Timer();
-
-    private final int width = 1000;
-    private final int height = 500;
-
-    private final float warriorAppearanceChance = 0.1f;
-    private final float workerAppearanceChance = 0.5f;
-
-    private final float warriorAppearanceTime = 1f;
-    private final float workerAppearanceTime = 1f;
-
+    private static final int WIDTH = 1000;
+    private static final int HEIGHT = 500;
     private final ArrayList<AbstractAnt> arrayOfAnts = new ArrayList<>();
 
-    private final Image workerAntImage = new Image("application/view/workerAnt.png");
-    private final Image warriorAntImage = new Image("application/view/warriorAnt.png");
-    private final ImageView workerAntImageView = new ImageView(workerAntImage);
-    private final ImageView warriorAntImageView = new ImageView(workerAntImage);
-    private final Group root = new Group();
-    private final Scene scene = new Scene(root, width, height);
-
+    private Group root = new Group();
+    private final Scene scene = new Scene(root, WIDTH, HEIGHT);
+    private Timer timer = null;
     private long startTime; // Время начала симуляции
 
     private void update(long timePassed) {
-//        System.out.println("called");
-        createAnt();
+        AbstractAnt newAnt = null;
+        Random random = new Random();
+        double probability = random.nextDouble();
+
+        if ((Math.round(timePassed / 100)) * 100 % (WarriorAnt.APPEARANCE_TIME * 1000) == 0 && WarriorAnt.APPEARANCE_CHANCE>=probability) {
+            newAnt = new WarriorAnt(WIDTH, HEIGHT);
+            arrayOfAnts.add(newAnt);
+        }
+
+        if ((Math.round(timePassed / 100)) * 100 % (WorkerAnt.APPEARANCE_TIME * 1000) == 0 && WorkerAnt.APPEARANCE_CHANCE>=probability) {
+            newAnt = new WorkerAnt(WIDTH, HEIGHT);
+            arrayOfAnts.add(newAnt);
+        }
+
         Platform.runLater(() -> {
             for (AbstractAnt ant : arrayOfAnts) {
-                if(ant.getClass() == WorkerAnt.class){
-                    ImageView antImageView = new ImageView(workerAntImage);
-                    antImageView.setLayoutX(ant.x);
-                    antImageView.setLayoutY(ant.y);
-                    antImageView.setFitWidth(20);
-                    antImageView.setFitHeight(20);
-                    root.getChildren().add(antImageView);
-                } else {
-                    ImageView antImageView = new ImageView(warriorAntImage);
-                    antImageView.setLayoutX(ant.x);
-                    antImageView.setLayoutY(ant.y);
-                    antImageView.setFitWidth(30);
-                    antImageView.setFitHeight(30);
-                    root.getChildren().add(antImageView);
+                if (ant.getClass() == WorkerAnt.class && !root.getChildren().contains(WorkerAnt.imageView)) {
+                    root.getChildren().add(WorkerAnt.imageView);
+                } else if (ant.getClass() == WarriorAnt.class && !root.getChildren().contains(WarriorAnt.imageView)) {
+                    root.getChildren().add(WarriorAnt.imageView);
                 }
             }
         });
+//        System.out.println(timePassed);
+//        System.out.println((Math.round(timePassed/100))*100 % (WorkerAnt.APPEARANCE_TIME * 1000));
     }
 
-    private void createAnt(){
-        Random random = new Random();
-        double x;
-        double y;
-        AbstractAnt newAnt;
-
-        if(random.nextDouble()<warriorAppearanceChance){
-            x = random.nextDouble() * (scene.getWidth() - warriorAntImageView.getFitWidth());
-            y = random.nextDouble() * (scene.getHeight() - warriorAntImageView.getFitHeight());
-            newAnt = new WarriorAnt((int) x, (int) y);
-        } else{
-            x = random.nextDouble() * (scene.getWidth() - workerAntImageView.getFitWidth());
-            y = random.nextDouble() * (scene.getHeight() - workerAntImageView.getFitHeight());
-            newAnt = new WorkerAnt((int) x, (int) y);
-        }
-
-        arrayOfAnts.add(newAnt);
-    }
     @Override
     public void start(Stage primaryStage) throws Exception {
         startTime = System.currentTimeMillis(); // Запоминаем время начала симуляции
@@ -92,10 +63,10 @@ public class Habitat extends Application {
 
         // Запускаем таймер, который будет вызывать метод update каждые 100 миллисекунд
         scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.S) { // Запуск симуляции при нажатии клавиши "S"
-                if (m_timer == null) {
-                    m_timer = new Timer();
-                    m_timer.schedule(new TimerTask() {
+            if (event.getCode() == KeyCode.B) { // Запуск симуляции при нажатии клавиши "S"
+                if (timer == null) {
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
                             long currentTime = System.currentTimeMillis();
@@ -104,13 +75,16 @@ public class Habitat extends Application {
                         }
                     }, 0, 100);
                 }
-            } else if (event.getCode() == KeyCode.P) { // Остановка симуляции при нажатии клавиши "P"
-                if (m_timer != null) {
-                    m_timer.cancel();
-                    m_timer = null;
+            } else if (event.getCode() == KeyCode.E) { // Остановка симуляции при нажатии клавиши "P"
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
                     arrayOfAnts.clear();
+                    root.getChildren().clear();
                 }
             }
+
+            System.out.println(timer);
         });
     }
 }
