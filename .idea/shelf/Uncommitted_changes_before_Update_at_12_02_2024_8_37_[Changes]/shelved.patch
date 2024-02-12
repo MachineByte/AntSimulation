@@ -1,0 +1,159 @@
+Index: src/main/java/application/models/AbstractAnt.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package application.models;\r\n\r\npublic abstract class AbstractAnt {\r\n    int x;\r\n    int y;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/application/models/AbstractAnt.java b/src/main/java/application/models/AbstractAnt.java
+--- a/src/main/java/application/models/AbstractAnt.java	(revision f19363b92273e8b5ab2a0505e85b487bb6edfba9)
++++ b/src/main/java/application/models/AbstractAnt.java	(date 1707651683587)
+@@ -1,6 +1,6 @@
+ package application.models;
+ 
+ public abstract class AbstractAnt {
+-    int x;
+-    int y;
++    public int x;
++    public int y;
+ }
+Index: .idea/sonarlint/issuestore/index.pb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/sonarlint/issuestore/index.pb b/.idea/sonarlint/issuestore/index.pb
+new file mode 100644
+--- /dev/null	(date 1707660493223)
++++ b/.idea/sonarlint/issuestore/index.pb	(date 1707660493223)
+@@ -0,0 +1,7 @@
++
++j
++:src/main/java/application/models/implement/WarriorAnt.java,0\c\0c1b549f6db99565bf8a708035f973091f07eb67
++i
++9src/main/java/application/models/implement/WorkerAnt.java,2\9\292062cf82fd14257cdaf191877bdcb181975073
++a
++1src/main/java/application/models/AbstractAnt.java,d\c\dc0e7be46f122eba2b490972134871463ca1333c
+\ No newline at end of file
+Index: .idea/sonarlint/securityhotspotstore/index.pb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/sonarlint/securityhotspotstore/index.pb b/.idea/sonarlint/securityhotspotstore/index.pb
+new file mode 100644
+--- /dev/null	(date 1707660493229)
++++ b/.idea/sonarlint/securityhotspotstore/index.pb	(date 1707660493229)
+@@ -0,0 +1,7 @@
++
++j
++:src/main/java/application/models/implement/WarriorAnt.java,0\c\0c1b549f6db99565bf8a708035f973091f07eb67
++i
++9src/main/java/application/models/implement/WorkerAnt.java,2\9\292062cf82fd14257cdaf191877bdcb181975073
++a
++1src/main/java/application/models/AbstractAnt.java,d\c\dc0e7be46f122eba2b490972134871463ca1333c
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"da885667-00c4-4b59-86dc-877c2804e0c6\" name=\"Changes\" comment=\"(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/encodings.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/application/view/FieldController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/application/view/workerAnt.png\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/gradle.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/gradle.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/build.gradle\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/build.gradle\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/application/view/Habitat.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/application/view/Habitat.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/application/view/Main.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/application/view/SampleController.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/application/view/hello-view.fxml\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n        <option value=\"FxmlFile\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Develop\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2cARFkQWoGVmX0v7FHJ9z1VsP0q\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"last_directory_selection\": \"D:/Файлы/Java projects/AntSimuation/src/main/java/application/view\",\r\n    \"last_opened_file_path\": \"C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"settings.editor.selected.configurable\": \"File.Encoding\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Файлы\\Java projects\\AntSimuation\\src\\main\\resources\\application\\view\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"application.startproject\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.application.view.Habitat\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"application.view.Main\" />\r\n      <module name=\"startProject.main\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"application.view.Habitat\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"application.view.Habitat\" />\r\n      <module name=\"startProject.main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"application.view.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.Main\" />\r\n      <item itemvalue=\"Application.application.view.Habitat\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.application.view.Habitat\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"da885667-00c4-4b59-86dc-877c2804e0c6\" name=\"Changes\" comment=\"\" />\r\n      <created>1707552297433</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1707552297433</updated>\r\n      <workItem from=\"1707552298759\" duration=\"4900000\" />\r\n      <workItem from=\"1707561605404\" duration=\"3712000\" />\r\n      <workItem from=\"1707565346645\" duration=\"5130000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"test commit\">\r\n      <created>1707553258166</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1707553258166</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"создана структура, добавлены файлы из прошлого тестового проекта, создана папка view\">\r\n      <created>1707554132189</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1707554132189</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"test commit\" />\r\n    <MESSAGE value=\"создана структура, добавлены файлы из прошлого тестового проекта, создана папка view\" />\r\n    <MESSAGE value=\"(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-field\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/application/view/Habitat.java</url>\r\n          <line>26</line>\r\n          <properties field=\"warriorAppearanceChance\" class=\"application.view.Habitat\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision f19363b92273e8b5ab2a0505e85b487bb6edfba9)
++++ b/.idea/workspace.xml	(date 1707660492967)
+@@ -5,20 +5,12 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами">
+-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/application/view/FieldController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/application/view/workerAnt.png" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/c/0c1b549f6db99565bf8a708035f973091f07eb67" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/0/c/0c1b549f6db99565bf8a708035f973091f07eb67" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Main.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/SampleController.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/hello-view.fxml" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -55,22 +47,22 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "ASKED_ADD_EXTERNAL_FILES": "true",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "last_directory_selection": "D:/Файлы/Java projects/AntSimuation/src/main/java/application/view",
+-    "last_opened_file_path": "C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "settings.editor.selected.configurable": "File.Encoding"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;last_directory_selection&quot;: &quot;D:/Файлы/Java projects/AntSimuation/src/main/java/application/view&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="D:\Файлы\Java projects\AntSimuation\src\main\resources\application\view" />
+@@ -106,6 +98,7 @@
+     </list>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.application.view.Habitat" />
+         <item itemvalue="Application.application.view.Habitat" />
+       </list>
+     </recent_temporary>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"FrameworkDetectionExcludesConfiguration\">\r\n    <file type=\"web\" url=\"file://$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"liberica-17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision f19363b92273e8b5ab2a0505e85b487bb6edfba9)
++++ b/.idea/misc.xml	(date 1707701827655)
+@@ -7,4 +7,7 @@
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="liberica-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
++  <component name="ProjectType">
++    <option name="id" value="jpab" />
++  </component>
+ </project>
+\ No newline at end of file
+diff --git a/.idea/sonarlint/issuestore/0/c/0c1b549f6db99565bf8a708035f973091f07eb67 b/.idea/sonarlint/issuestore/0/c/0c1b549f6db99565bf8a708035f973091f07eb67
+new file mode 100644
+diff --git a/.idea/sonarlint/securityhotspotstore/0/c/0c1b549f6db99565bf8a708035f973091f07eb67 b/.idea/sonarlint/securityhotspotstore/0/c/0c1b549f6db99565bf8a708035f973091f07eb67
+new file mode 100644

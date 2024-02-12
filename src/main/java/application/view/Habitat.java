@@ -5,9 +5,7 @@ import application.models.implement.WarriorAnt;
 import application.models.implement.WorkerAnt;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -16,7 +14,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -28,7 +25,7 @@ public class Habitat extends Application {
     private final ArrayList<AbstractAnt> arrayOfAnts = new ArrayList<>();
     PaneController controller;
     private Pane pane;
-    private Text timeElement;
+    private Text timerLabel;
     private Timer timer = null;
     private long startTime;
 
@@ -48,7 +45,7 @@ public class Habitat extends Application {
         }
 
         Platform.runLater(() -> {
-            controller.setText((float) timePassed / 1000 +" c");
+            timerLabel.setText((float) timePassed / 1000 +" c");
             for (AbstractAnt ant : arrayOfAnts) {
                 if (ant.getClass() == WorkerAnt.class && !pane.getChildren().contains(WorkerAnt.imageView)) {
                     pane.getChildren().add(WorkerAnt.imageView);
@@ -67,7 +64,7 @@ public class Habitat extends Application {
         Parent parent = fxmlLoader.load();
         controller = fxmlLoader.getController();
         pane = controller.pane;
-        timeElement = controller.timeElement;
+        timerLabel = controller.timerLabel;
 
         Scene scene = new Scene(parent, WIDTH, HEIGHT);
 
@@ -82,14 +79,17 @@ public class Habitat extends Application {
                 if (timer == null) {
                     timer = new Timer();
                     startTime = System.currentTimeMillis();
+
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
                             long currentTime = System.currentTimeMillis();
                             long timePassed = currentTime - startTime;
                             update(timePassed);
+
                         }
                     }, 0, 100);
+
                 }
             } else if (event.getCode() == KeyCode.E) {
                 if (timer != null) {
@@ -98,6 +98,8 @@ public class Habitat extends Application {
                     arrayOfAnts.clear();
                     pane.getChildren().clear();
                 }
+            } else if(event.getCode() == KeyCode.T){
+                timerLabel.setVisible(!timerLabel.isVisible());
             }
         });
     }

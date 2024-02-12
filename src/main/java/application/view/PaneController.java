@@ -10,11 +10,7 @@ public class PaneController {
     @FXML
     public Pane pane;
     @FXML
-    public Text timeElement;
+    public Text timerLabel;
     public Pane mainPane;
 
-    // Метод, который может быть использован для установки текста в TextField
-    public void setText(String text) {
-        timeElement.setText(text);
-    }
 }
