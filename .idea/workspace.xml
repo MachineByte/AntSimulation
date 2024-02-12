@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Реализовано динамическое изменение размеров элементов при масштабировании окна. Переход на мс в классах-наследниках муравья. Мелкие улучшения">
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/models/SingletonArrayList.java" afterDir="false" />
+    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Реализован Singleton">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +119,7 @@
       <workItem from="1707565346645" duration="5130000" />
       <workItem from="1707701782637" duration="2356000" />
       <workItem from="1707708418573" duration="457000" />
-      <workItem from="1707734918995" duration="1566000" />
+      <workItem from="1707734918995" duration="2835000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <created>1707553258166</created>
@@ -148,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707734280913</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Реализован Singleton">
+      <created>1707736605211</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707736605211</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +179,8 @@
     <MESSAGE value="(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами" />
     <MESSAGE value="Рефактор update " />
     <MESSAGE value="Реализовано динамическое изменение размеров элементов при масштабировании окна. Переход на мс в классах-наследниках муравья. Мелкие улучшения" />
-    <option name="LAST_COMMIT_MESSAGE" value="Реализовано динамическое изменение размеров элементов при масштабировании окна. Переход на мс в классах-наследниках муравья. Мелкие улучшения" />
+    <MESSAGE value="Реализован Singleton" />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализован Singleton" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

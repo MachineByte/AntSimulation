@@ -23,15 +23,15 @@ import java.util.TimerTask;
 public class Habitat extends Application {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 500;
-    SingletonArrayList singletonArrayList = SingletonArrayList.getInstance();
-    ArrayList<AbstractAnt> arrayOfAnts = singletonArrayList.getArrayList();
+    static SingletonArrayList singletonArrayList = SingletonArrayList.getInstance();
+    static ArrayList<AbstractAnt> arrayOfAnts = singletonArrayList.getArrayList();
 
-    PaneController controller;
+    static PaneController controller;
 
-    private Timer timer = null;
-    private long startTime;
+    private static Timer timer = null;
+    private static long startTime;
 
-    private void update(long timePassed) {
+    private static void update(long timePassed) {
         createAntIfTimeElapsed(timePassed, WarriorAnt.class, WarriorAnt.APPEARANCE_TIME, WarriorAnt.APPEARANCE_CHANCE);
         createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.APPEARANCE_TIME, WorkerAnt.APPEARANCE_CHANCE);
 
@@ -41,17 +41,19 @@ public class Habitat extends Application {
         });
     }
 
-    private void createAntIfTimeElapsed(long timePassed, Class<? extends AbstractAnt> antClass, float appearanceTime, float appearanceChance) {
+    private static void createAntIfTimeElapsed(long timePassed, Class<? extends AbstractAnt> antClass, float appearanceTime, float appearanceChance) {
         Random random = new Random();
         double probability = random.nextDouble();
 
         if ((Math.round(timePassed / 100.0) * 100) % appearanceTime == 0 && appearanceChance >= probability) {
-            AbstractAnt newAnt = (antClass == WarriorAnt.class) ? new WarriorAnt(WIDTH, HEIGHT) : new WorkerAnt(WIDTH, HEIGHT);
+            int simulationAreaWidth = (int) controller.simulationPane.getWidth();
+            int simulationAreaHeight = (int) controller.simulationPane.getHeight();
+            AbstractAnt newAnt = (antClass == WarriorAnt.class) ? new WarriorAnt(simulationAreaWidth, simulationAreaHeight) : new WorkerAnt(simulationAreaWidth, simulationAreaHeight);
             arrayOfAnts.add(newAnt);
         }
     }
 
-    private void updateAntsInView() {
+    private static void updateAntsInView() {
         for (AbstractAnt ant : arrayOfAnts) {
             if (!controller.simulationPane.getChildren().contains(ant.imageView)) {
                 controller.simulationPane.getChildren().add(ant.imageView);
@@ -77,43 +79,49 @@ public class Habitat extends Application {
         // Запускаем таймер, который будет вызывать метод update каждые 100 миллисекунд
         scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.B) {
-                if (timer == null) {
-                    timer = new Timer();
-                    startTime = System.currentTimeMillis();
-                    controller.statisticalPane.setVisible(false);
-                    controller.timerPane.setVisible(true);
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            long currentTime = System.currentTimeMillis();
-                            long timePassed = currentTime - startTime;
-                            update(timePassed);
-                        }
-                    }, 0, 100);
-
-                }
+                startSimulation();
             } else if (event.getCode() == KeyCode.E) {
-                if (timer != null) {
-                    timer.cancel();
-                    timer = null;
-
-                    long countWorker = arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WorkerAnt.class).count();
-                    long countWarrior = arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WarriorAnt.class).count();
-
-                    controller.statisticalPane.setVisible(true);
-                    controller.timerPane.setVisible(false);
-
-                    controller.firstCounterStatisticalLabel.setText(String.valueOf("Количество рабочих: " + countWorker));
-                    controller.secondCounterStatisticalLabel.setText(String.valueOf("Количество воинов: " + countWarrior));
-                    controller.timerStatisticalLabel.setText("Время симуляции: "+ controller.timerLabel.getText());
-
-                    arrayOfAnts.clear();
-                    controller.simulationPane.getChildren().clear();
-
-                }
+                stopSimulation();
             } else if(event.getCode() == KeyCode.T){
                 controller.timerPane.setVisible(!controller.timerPane.isVisible());
             }
         });
+    }
+
+    public static void startSimulation(){
+        if (timer == null) {
+            timer = new Timer();
+            startTime = System.currentTimeMillis();
+            controller.statisticalPane.setVisible(false);
+            controller.timerPane.setVisible(true);
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    long currentTime = System.currentTimeMillis();
+                    long timePassed = currentTime - startTime;
+                    update(timePassed);
+                }
+            }, 0, 100);
+        }
+    }
+    public static void stopSimulation(){
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+
+            long countWorker = arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WorkerAnt.class).count();
+            long countWarrior = arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WarriorAnt.class).count();
+
+            controller.statisticalPane.setVisible(true);
+            controller.timerPane.setVisible(false);
+
+            controller.firstCounterStatisticalLabel.setText(String.valueOf("Количество рабочих: " + countWorker));
+            controller.secondCounterStatisticalLabel.setText(String.valueOf("Количество воинов: " + countWarrior));
+            controller.timerStatisticalLabel.setText("Время симуляции: "+ controller.timerLabel.getText());
+
+            arrayOfAnts.clear();
+            controller.simulationPane.getChildren().clear();
+
+        }
     }
 }
