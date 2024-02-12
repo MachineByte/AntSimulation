@@ -10,6 +10,6 @@ public abstract class AbstractAnt {
     public int x;
     public int y;
 
-    public static ImageView imageView;
+    public ImageView imageView;
 
 }

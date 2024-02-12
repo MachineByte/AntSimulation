@@ -1,16 +1,31 @@
 package application.view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+
 
 public class PaneController {
+
     @FXML
-    public Pane pane;
+    public GridPane statisticalPane;
     @FXML
-    public Text timerLabel;
-    public Pane mainPane;
+    public Label firstCounterStatisticalLabel;
+
+    @FXML
+    public Label secondCounterStatisticalLabel;
+
+    @FXML
+    public Label timerStatisticalLabel;
+
+    @FXML
+    public Pane timerPane;
+
+    @FXML
+    public Label timerLabel;
+
+    @FXML
+    public Pane simulationPane;
 
 }
