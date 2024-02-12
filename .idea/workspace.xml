@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Реализован Singleton">
+    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" afterDir="false" />
@@ -119,7 +119,7 @@
       <workItem from="1707565346645" duration="5130000" />
       <workItem from="1707701782637" duration="2356000" />
       <workItem from="1707708418573" duration="457000" />
-      <workItem from="1707734918995" duration="2835000" />
+      <workItem from="1707734918995" duration="4540000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <created>1707553258166</created>
@@ -156,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707736605211</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода">
+      <created>1707738732323</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707738732323</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +187,8 @@
     <MESSAGE value="Рефактор update " />
     <MESSAGE value="Реализовано динамическое изменение размеров элементов при масштабировании окна. Переход на мс в классах-наследниках муравья. Мелкие улучшения" />
     <MESSAGE value="Реализован Singleton" />
-    <option name="LAST_COMMIT_MESSAGE" value="Реализован Singleton" />
+    <MESSAGE value="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода" />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

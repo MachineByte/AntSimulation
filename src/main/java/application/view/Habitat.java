@@ -11,8 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -22,11 +20,11 @@ import java.util.TimerTask;
 
 public class Habitat extends Application {
     private static final int WIDTH = 1000;
-    private static final int HEIGHT = 500;
-    static SingletonArrayList singletonArrayList = SingletonArrayList.getInstance();
-    static ArrayList<AbstractAnt> arrayOfAnts = singletonArrayList.getArrayList();
+    private static final int HEIGHT = 700;
+    private static SingletonArrayList singletonArrayList = SingletonArrayList.getInstance();
+    private static ArrayList<AbstractAnt> arrayOfAnts = singletonArrayList.getArrayList();
 
-    static PaneController controller;
+    private static PaneController controller;
 
     private static Timer timer = null;
     private static long startTime;
@@ -92,8 +90,7 @@ public class Habitat extends Application {
         if (timer == null) {
             timer = new Timer();
             startTime = System.currentTimeMillis();
-            controller.statisticalPane.setVisible(false);
-            controller.timerPane.setVisible(true);
+
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
@@ -109,19 +106,17 @@ public class Habitat extends Application {
             timer.cancel();
             timer = null;
 
-            long countWorker = arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WorkerAnt.class).count();
-            long countWarrior = arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WarriorAnt.class).count();
-
-            controller.statisticalPane.setVisible(true);
-            controller.timerPane.setVisible(false);
-
-            controller.firstCounterStatisticalLabel.setText(String.valueOf("Количество рабочих: " + countWorker));
-            controller.secondCounterStatisticalLabel.setText(String.valueOf("Количество воинов: " + countWarrior));
-            controller.timerStatisticalLabel.setText("Время симуляции: "+ controller.timerLabel.getText());
-
             arrayOfAnts.clear();
             controller.simulationPane.getChildren().clear();
 
         }
+    }
+
+    public static long getWorkerCount(){
+        return arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WorkerAnt.class).count();
+    }
+
+    public static long getWarriorCount(){
+        return arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WarriorAnt.class).count();
     }
 }

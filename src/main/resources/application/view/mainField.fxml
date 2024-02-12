@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="506.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.PaneController">
    <children>
       <SplitPane dividerPositions="0.8" prefHeight="510.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -16,7 +15,7 @@
             <AnchorPane prefHeight="510.0" prefWidth="642.0">
                <children>
                   <Pane fx:id="simulationPane" layoutX="-3.0" layoutY="-3.0" prefHeight="504.0" prefWidth="800.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-3.0" />
-                  <GridPane fx:id="statisticalPane" gridLinesVisible="true" layoutX="33.0" prefHeight="282.0" prefWidth="440.0" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="113.0">
+                  <GridPane fx:id="statisticalPane" gridLinesVisible="true" layoutX="33.0" prefHeight="282.0" prefWidth="440.0" style="-fx-background-color: #e6e6e6;" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="113.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -49,6 +48,7 @@
                <children>
                   <Button fx:id="startButton" layoutX="37.0" layoutY="34.0" mnemonicParsing="false" onAction="#startPressed" prefHeight="25.0" prefWidth="122.0" text="Старт" />
                   <Button fx:id="stopButton" layoutX="37.0" layoutY="81.0" mnemonicParsing="false" onAction="#stopPressed" prefHeight="25.0" prefWidth="122.0" text="Стоп" />
+                  <ToggleButton fx:id="statisticButton" layoutX="37.0" layoutY="123.0" mnemonicParsing="false" onAction="#statisticPressed" prefHeight="55.0" prefWidth="122.0" text="Показать сатистику" textAlignment="CENTER" wrapText="true" />
                </children>
             </AnchorPane>
          </items>
