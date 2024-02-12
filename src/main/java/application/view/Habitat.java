@@ -24,8 +24,7 @@ public class Habitat extends Application {
     private static final int HEIGHT = 500;
     private final ArrayList<AbstractAnt> arrayOfAnts = new ArrayList<>();
     PaneController controller;
-    private Pane pane;
-    private Text timerLabel;
+
     private Timer timer = null;
     private long startTime;
 
@@ -34,7 +33,7 @@ public class Habitat extends Application {
         createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.APPEARANCE_TIME, WorkerAnt.APPEARANCE_CHANCE);
 
         Platform.runLater(() -> {
-            timerLabel.setText((float) timePassed / 1000 + " c");
+            controller.timerLabel.setText((float) timePassed / 1000 + " c");
             updateAntsInView();
         });
     }
@@ -43,7 +42,7 @@ public class Habitat extends Application {
         Random random = new Random();
         double probability = random.nextDouble();
 
-        if ((Math.round(timePassed / 100.0) * 100) % (appearanceTime * 1000) == 0 && appearanceChance >= probability) {
+        if ((Math.round(timePassed / 100.0) * 100) % appearanceTime == 0 && appearanceChance >= probability) {
             AbstractAnt newAnt = (antClass == WarriorAnt.class) ? new WarriorAnt(WIDTH, HEIGHT) : new WorkerAnt(WIDTH, HEIGHT);
             arrayOfAnts.add(newAnt);
         }
@@ -51,8 +50,8 @@ public class Habitat extends Application {
 
     private void updateAntsInView() {
         for (AbstractAnt ant : arrayOfAnts) {
-            if (!pane.getChildren().contains(ant.imageView)) {
-                pane.getChildren().add(ant.imageView);
+            if (!controller.simulationPane.getChildren().contains(ant.imageView)) {
+                controller.simulationPane.getChildren().add(ant.imageView);
             }
         }
     }
@@ -62,8 +61,6 @@ public class Habitat extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Habitat.class.getResource("mainField.fxml"));
         Parent parent = fxmlLoader.load();
         controller = fxmlLoader.getController();
-        pane = controller.pane;
-        timerLabel = controller.timerLabel;
 
         Scene scene = new Scene(parent, WIDTH, HEIGHT);
 
@@ -72,20 +69,22 @@ public class Habitat extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        controller.statisticalPane.setVisible(false);
+        controller.timerPane.setVisible(false);
         // Запускаем таймер, который будет вызывать метод update каждые 100 миллисекунд
         scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.B) {
                 if (timer == null) {
                     timer = new Timer();
                     startTime = System.currentTimeMillis();
-
+                    controller.statisticalPane.setVisible(false);
+                    controller.timerPane.setVisible(true);
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
                             long currentTime = System.currentTimeMillis();
                             long timePassed = currentTime - startTime;
                             update(timePassed);
-
                         }
                     }, 0, 100);
 
@@ -94,11 +93,23 @@ public class Habitat extends Application {
                 if (timer != null) {
                     timer.cancel();
                     timer = null;
+
+                    long countWorker = arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WorkerAnt.class).count();
+                    long countWarrior = arrayOfAnts.stream().filter(abstractAnt -> abstractAnt.getClass() == WarriorAnt.class).count();
+
+                    controller.statisticalPane.setVisible(true);
+                    controller.timerPane.setVisible(false);
+
+                    controller.firstCounterStatisticalLabel.setText(String.valueOf("Количество рабочих: " + countWorker));
+                    controller.secondCounterStatisticalLabel.setText(String.valueOf("Количество воинов: " + countWarrior));
+                    controller.timerStatisticalLabel.setText("Время симуляции: "+ controller.timerLabel.getText());
+
                     arrayOfAnts.clear();
-                    pane.getChildren().clear();
+                    controller.simulationPane.getChildren().clear();
+
                 }
             } else if(event.getCode() == KeyCode.T){
-                timerLabel.setVisible(!timerLabel.isVisible());
+                controller.timerPane.setVisible(!controller.timerPane.isVisible());
             }
         });
     }

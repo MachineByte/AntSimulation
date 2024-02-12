@@ -8,8 +8,8 @@ import javafx.scene.image.ImageView;
 import java.util.Random;
 
 public class WorkerAnt extends AbstractAnt implements IBehaviour {
-    public static final float APPEARANCE_CHANCE = 0.9f;
-    public static final float APPEARANCE_TIME = 1f;
+    public static final float APPEARANCE_CHANCE = 0.3f;
+    public static final float APPEARANCE_TIME = 1000f;
     public static final Image IMAGE = new Image("application/view/workerAnt.png");
     public static final float IMAGE_WIDTH = 30f;
     public static final float IMAGE_HEIGHT = 30f;
