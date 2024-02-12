@@ -30,32 +30,31 @@ public class Habitat extends Application {
     private long startTime;
 
     private void update(long timePassed) {
-        AbstractAnt newAnt;
+        createAntIfTimeElapsed(timePassed, WarriorAnt.class, WarriorAnt.APPEARANCE_TIME, WarriorAnt.APPEARANCE_CHANCE);
+        createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.APPEARANCE_TIME, WorkerAnt.APPEARANCE_CHANCE);
+
+        Platform.runLater(() -> {
+            timerLabel.setText((float) timePassed / 1000 + " c");
+            updateAntsInView();
+        });
+    }
+
+    private void createAntIfTimeElapsed(long timePassed, Class<? extends AbstractAnt> antClass, float appearanceTime, float appearanceChance) {
         Random random = new Random();
         double probability = random.nextDouble();
 
-        if ((Math.round(timePassed / 100)) * 100 % (WarriorAnt.APPEARANCE_TIME * 1000) == 0 && WarriorAnt.APPEARANCE_CHANCE>=probability) {
-            newAnt = new WarriorAnt(WIDTH, HEIGHT);
+        if ((Math.round(timePassed / 100.0) * 100) % (appearanceTime * 1000) == 0 && appearanceChance >= probability) {
+            AbstractAnt newAnt = (antClass == WarriorAnt.class) ? new WarriorAnt(WIDTH, HEIGHT) : new WorkerAnt(WIDTH, HEIGHT);
             arrayOfAnts.add(newAnt);
         }
+    }
 
-        if ((Math.round(timePassed / 100)) * 100 % (WorkerAnt.APPEARANCE_TIME * 1000) == 0 && WorkerAnt.APPEARANCE_CHANCE>=probability) {
-            newAnt = new WorkerAnt(WIDTH, HEIGHT);
-            arrayOfAnts.add(newAnt);
-        }
-
-        Platform.runLater(() -> {
-            timerLabel.setText((float) timePassed / 1000 +" c");
-            for (AbstractAnt ant : arrayOfAnts) {
-                if (ant.getClass() == WorkerAnt.class && !pane.getChildren().contains(WorkerAnt.imageView)) {
-                    pane.getChildren().add(WorkerAnt.imageView);
-                } else if (ant.getClass() == WarriorAnt.class && !pane.getChildren().contains(WarriorAnt.imageView)) {
-                    pane.getChildren().add(WarriorAnt.imageView);
-                }
+    private void updateAntsInView() {
+        for (AbstractAnt ant : arrayOfAnts) {
+            if (!pane.getChildren().contains(ant.imageView)) {
+                pane.getChildren().add(ant.imageView);
             }
-        });
-//        System.out.println(timePassed);
-//        System.out.println((Math.round(timePassed/100))*100 % (WorkerAnt.APPEARANCE_TIME * 1000));
+        }
     }
 
     @Override

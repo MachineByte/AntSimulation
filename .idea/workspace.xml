@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами">
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/c/0c1b549f6db99565bf8a708035f973091f07eb67" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/0/c/0c1b549f6db99565bf8a708035f973091f07eb67" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
