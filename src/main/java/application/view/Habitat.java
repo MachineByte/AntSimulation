@@ -1,6 +1,7 @@
 package application.view;
 
 import application.models.AbstractAnt;
+import application.models.SingletonArrayList;
 import application.models.implement.WarriorAnt;
 import application.models.implement.WorkerAnt;
 import javafx.application.Application;
@@ -22,7 +23,9 @@ import java.util.TimerTask;
 public class Habitat extends Application {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 500;
-    private final ArrayList<AbstractAnt> arrayOfAnts = new ArrayList<>();
+    SingletonArrayList singletonArrayList = SingletonArrayList.getInstance();
+    ArrayList<AbstractAnt> arrayOfAnts = singletonArrayList.getArrayList();
+
     PaneController controller;
 
     private Timer timer = null;
