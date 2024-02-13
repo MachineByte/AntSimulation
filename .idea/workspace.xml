@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_17_47__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_17_47__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_07__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_07__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_32__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_32__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_34__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024_8_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024_8_37__Changes_.xml" afterDir="false" />
+    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/FieldController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" afterDir="false" />
@@ -23,6 +15,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -31,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -122,6 +119,7 @@
       <workItem from="1707565346645" duration="5130000" />
       <workItem from="1707701782637" duration="2356000" />
       <workItem from="1707708418573" duration="457000" />
+      <workItem from="1707734918995" duration="4540000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <created>1707553258166</created>
@@ -144,7 +142,28 @@
       <option name="project" value="LOCAL" />
       <updated>1707708136391</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Реализовано динамическое изменение размеров элементов при масштабировании окна. Переход на мс в классах-наследниках муравья. Мелкие улучшения">
+      <created>1707734280913</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707734280913</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Реализован Singleton">
+      <created>1707736605211</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707736605211</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода">
+      <created>1707738732323</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707738732323</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +185,10 @@
     <MESSAGE value="создана структура, добавлены файлы из прошлого тестового проекта, создана папка view" />
     <MESSAGE value="(ТЕСТ)Работающий графиеский интерфейс с кнопками и чекбоксами" />
     <MESSAGE value="Рефактор update " />
-    <option name="LAST_COMMIT_MESSAGE" value="Рефактор update " />
+    <MESSAGE value="Реализовано динамическое изменение размеров элементов при масштабировании окна. Переход на мс в классах-наследниках муравья. Мелкие улучшения" />
+    <MESSAGE value="Реализован Singleton" />
+    <MESSAGE value="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода" />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
