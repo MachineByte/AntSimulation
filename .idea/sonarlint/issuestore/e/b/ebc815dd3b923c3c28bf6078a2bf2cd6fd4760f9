@@ -1,0 +1,14 @@
+
+b	java:S112Z"FDefine and throw a dedicated exception instead of using a generic one.(é¾•À8Ø¦Í¿Ú1
+W
+java:S2209m"5Change this instance-reference to a static reference.(¾ŞÒ¡ÿÿÿÿÿ8§Í¿Ú1
+W
+java:S2209o"5Change this instance-reference to a static reference.(¹ñ©‰úÿÿÿÿ8§Í¿Ú1
+T
+java:S2696„"6Make the enclosing method "static" or remove this set.(•äÁ8¥§Í¿Ú1
+T
+java:S2696‘"6Make the enclosing method "static" or remove this set.(ıØ†ƒ8¦§Í¿Ú1
+T
+java:S2696’"6Make the enclosing method "static" or remove this set.(§µ¤«8¦§Í¿Ú1
+Y
+java:S2696¢"6Make the enclosing method "static" or remove this set.(½Æñ¹üÿÿÿÿ8¨§Í¿Ú1

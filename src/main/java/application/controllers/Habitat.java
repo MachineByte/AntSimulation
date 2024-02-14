@@ -11,9 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -33,6 +31,16 @@ public class Habitat extends Application {
     private static Timer timer = null;
     private static long startTime;
 
+    private static boolean showStatistic = false;
+
+    @FXML
+    private ToggleGroup timerToggleGroup;
+    @FXML
+    private RadioButton timerRadioButtonShow;
+    @FXML
+    private RadioButton timerRadioButtonHide;
+    @FXML
+    private CheckBox statisticCheckBox;
     @FXML
     public GridPane statisticalPane;
     @FXML
@@ -51,32 +59,43 @@ public class Habitat extends Application {
     public Button stopButton;
     @FXML
     public Button startButton;
+
     @FXML
-    public ToggleButton statisticButton;
+    void switchingStatisticCheckBox(ActionEvent event) {
+        if(statisticCheckBox.isSelected()){
+            showStatistic = true;
+        } else{
+            showStatistic = false;
+        }
+    }
+
+    @FXML
+    void timerRadioButtonPressed(ActionEvent event) {
+        if(timerToggleGroup.getSelectedToggle().equals(timerRadioButtonShow)){
+            timerPane.setVisible(true);
+        } else{
+            timerPane.setVisible(false);
+        }
+    }
 
     @FXML
     void startPressed(ActionEvent event) {
         startSimulation();
         statisticalPane.setVisible(false);
-        timerPane.setVisible(true);
         startButton.setDisable(true);
         stopButton.setDisable(false);
     }
 
     @FXML
     void stopPressed(ActionEvent event) {
-        updateStatisticalLabel();
+        if(showStatistic == true) {
+            updateStatisticalLabel();
+            statisticalPane.setVisible(true);
+        }
         stopSimulation();
-        statisticalPane.setVisible(true);
-        timerPane.setVisible(false);
+
         startButton.setDisable(false);
         stopButton.setDisable(true);
-    }
-
-    @FXML
-    void statisticPressed(ActionEvent event) {
-        updateStatisticalLabel();
-        statisticalPane.setVisible(!statisticalPane.isVisible());
     }
 
     void updateStatisticalLabel() {

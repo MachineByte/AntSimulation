@@ -48,7 +48,13 @@
                <children>
                   <Button fx:id="startButton" layoutX="37.0" layoutY="34.0" mnemonicParsing="false" onAction="#startPressed" prefHeight="25.0" prefWidth="122.0" text="Старт" />
                   <Button fx:id="stopButton" layoutX="37.0" layoutY="81.0" mnemonicParsing="false" onAction="#stopPressed" prefHeight="25.0" prefWidth="122.0" text="Стоп" />
-                  <ToggleButton fx:id="statisticButton" layoutX="37.0" layoutY="123.0" mnemonicParsing="false" onAction="#statisticPressed" prefHeight="55.0" prefWidth="122.0" text="Показать сатистику" textAlignment="CENTER" wrapText="true" />
+                  <CheckBox fx:id="statisticCheckBox" layoutX="25.0" layoutY="124.0" mnemonicParsing="false" onAction="#switchingStatisticCheckBox" text="Показывать статистику" />
+                  <RadioButton fx:id="timerRadioButtonShow" layoutX="25.0" layoutY="158.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Показывать таймер">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="timerToggleGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="timerRadioButtonHide" layoutX="25.0" layoutY="182.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Убрать таймер" toggleGroup="$timerToggleGroup" />
                </children>
             </AnchorPane>
          </items>
