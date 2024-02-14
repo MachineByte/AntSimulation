@@ -7,3 +7,7 @@ a
 1src/main/java/application/models/AbstractAnt.java,d\c\dc0e7be46f122eba2b490972134871463ca1333c
 [
 +src/main/java/application/view/Habitat.java,a\b\ab50cc9bc5e95a53ae4a8d4b1c9339585b677990
+N
+src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+b
+2src/main/java/application/view/PaneController.java,b\c\bc3576bf2d80e98fc3b9317b4bcc40362c710181

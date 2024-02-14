@@ -1,20 +1,19 @@
-package application.models.implement;
+package application.models.data.implement;
 
-import application.models.AbstractAnt;
-import application.models.IBehaviour;
+import application.models.data.AbstractAnt;
+import application.models.data.IBehaviour;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.Random;
 
-public class WarriorAnt extends AbstractAnt implements IBehaviour {
-    public static final float APPEARANCE_CHANCE = 0.7f;
-    public static final float APPEARANCE_TIME = 1500f;
-    public static final Image IMAGE = new Image("application/view/warriorAnt.png");
+public class WorkerAnt extends AbstractAnt implements IBehaviour {
+    public static final float APPEARANCE_CHANCE = 0.3f;
+    public static final float APPEARANCE_TIME = 300f;
+    public static final Image IMAGE = new Image("application/controllers/workerAnt.png");
     public static final float IMAGE_WIDTH = 30f;
     public static final float IMAGE_HEIGHT = 30f;
-
-    public WarriorAnt(int widthScene, int heightScene) {
+    public WorkerAnt(int widthScene, int heightScene) {
         Random random = new Random();
 
         this.x = (int) (random.nextDouble() * (widthScene - IMAGE_WIDTH));

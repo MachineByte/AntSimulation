@@ -3,6 +3,6 @@ module application.startproject {
     requires javafx.fxml;
 
 
-    opens application.view to javafx.fxml;
-    exports application.view;
+    opens application.controllers to javafx.fxml;
+    exports application.controllers;
 }

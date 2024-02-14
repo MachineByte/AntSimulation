@@ -5,10 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода">
+      <change afterPath="$PROJECT_DIR$/src/main/java/application/controllers/Habitat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_17_47__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_17_47__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_07__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_07__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_32__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_32__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_34__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024_8_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024_8_37__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/AbstractAnt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/IBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/IBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/SingletonArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/AntRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/implement/WarriorAnt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/implement/WorkerAnt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/controllers/mainField.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/warriorAnt.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/controllers/warriorAnt.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/workerAnt.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/controllers/workerAnt.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,23 +67,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_directory_selection&quot;: &quot;D:/Файлы/Java projects/AntSimuation/src/main/java/application/view&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_directory_selection": "D:/Файлы/Java projects/AntSimuation/src/main/java/application/view",
+    "last_opened_file_path": "C:/AntSimulation-test2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Файлы\Java projects\AntSimuation\src\main\resources\application\view" />
@@ -75,7 +92,7 @@
       <recent name="application.startproject" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.application.view.Habitat">
+  <component name="RunManager" selected="Application.application.controllers.Habitat">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="application.view.Main" />
       <module name="startProject.main" />
@@ -83,12 +100,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="application.view.Habitat" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="application.view.Habitat" />
+    <configuration name="application.controllers.Habitat" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.controllers.Habitat" />
       <module name="startProject.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="application.view.*" />
+          <option name="PATTERN" value="application.controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -98,11 +115,11 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.application.view.Habitat" />
+      <item itemvalue="Application.application.controllers.Habitat" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.application.view.Habitat" />
+        <item itemvalue="Application.application.controllers.Habitat" />
       </list>
     </recent_temporary>
   </component>
@@ -120,6 +137,7 @@
       <workItem from="1707701782637" duration="2356000" />
       <workItem from="1707708418573" duration="457000" />
       <workItem from="1707734918995" duration="4540000" />
+      <workItem from="1707908503874" duration="8021000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <created>1707553258166</created>
