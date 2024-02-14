@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода">
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/controllers/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_17_47__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_17_47__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_07__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_07__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_32__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_32__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_02_2024_18_34__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024_8_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024_8_37__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/AbstractAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/AbstractAnt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/IBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/IBehaviour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/SingletonArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/AntRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WarriorAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/implement/WarriorAnt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/implement/WorkerAnt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/implement/WorkerAnt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/Habitat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/view/PaneController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/mainField.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/controllers/mainField.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/warriorAnt.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/controllers/warriorAnt.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application/view/workerAnt.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application/controllers/workerAnt.png" afterDir="false" />
-    </list>
+    <list default="true" id="da885667-00c4-4b59-86dc-877c2804e0c6" name="Changes" comment="Проект приведён к патерну MVC(наверно)." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,7 +115,7 @@
       <workItem from="1707701782637" duration="2356000" />
       <workItem from="1707708418573" duration="457000" />
       <workItem from="1707734918995" duration="4540000" />
-      <workItem from="1707908503874" duration="8021000" />
+      <workItem from="1707908503874" duration="8136000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <created>1707553258166</created>
@@ -181,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707738732323</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Проект приведён к патерну MVC(наверно).">
+      <created>1707916683500</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707916683500</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +191,8 @@
     <MESSAGE value="Реализовано динамическое изменение размеров элементов при масштабировании окна. Переход на мс в классах-наследниках муравья. Мелкие улучшения" />
     <MESSAGE value="Реализован Singleton" />
     <MESSAGE value="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода" />
-    <option name="LAST_COMMIT_MESSAGE" value="Реализованы кнопки старт и стоп, разделение экрана на 2 области, небольшой рефакторинг кода" />
+    <MESSAGE value="Проект приведён к патерну MVC(наверно)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Проект приведён к патерну MVC(наверно)." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
