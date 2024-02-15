@@ -1,14 +1,21 @@
 
-b	java:S112Z"FDefine and throw a dedicated exception instead of using a generic one.(é¾•À8Ø¦Í¿Ú1
+X
+java:S2696B"6Make the enclosing method "static" or remove this set.(„Ö©Øøÿÿÿÿ8ôãôÁÚ1
+X
+java:S2696D"6Make the enclosing method "static" or remove this set.(€ª£™úÿÿÿÿ8ôãôÁÚ1
+d
+java:S1126J"BReplace this if-then-else statement by a single method invocation.(ÿÄÇıÿÿÿÿ8õãôÁÚ1
+D
+java:S1125["'Remove the unnecessary boolean literal.(šì×Ó8øãôÁÚ1
 W
-java:S2209m"5Change this instance-reference to a static reference.(¾ŞÒ¡ÿÿÿÿÿ8§Í¿Ú1
+java:S2209v"5Change this instance-reference to a static reference.(¾ŞÒ¡ÿÿÿÿÿ8ıãôÁÚ1
 W
-java:S2209o"5Change this instance-reference to a static reference.(¹ñ©‰úÿÿÿÿ8§Í¿Ú1
+java:S2209x"5Change this instance-reference to a static reference.(¹ñ©‰úÿÿÿÿ8ıãôÁÚ1
 T
-java:S2696„"6Make the enclosing method "static" or remove this set.(•äÁ8¥§Í¿Ú1
+java:S2696"6Make the enclosing method "static" or remove this set.(•äÁ8‹äôÁÚ1
 T
-java:S2696‘"6Make the enclosing method "static" or remove this set.(ıØ†ƒ8¦§Í¿Ú1
+java:S2696š"6Make the enclosing method "static" or remove this set.(ıØ†ƒ8ŒäôÁÚ1
 T
-java:S2696’"6Make the enclosing method "static" or remove this set.(§µ¤«8¦§Í¿Ú1
+java:S2696›"6Make the enclosing method "static" or remove this set.(§µ¤«8ŒäôÁÚ1
 Y
-java:S2696¢"6Make the enclosing method "static" or remove this set.(½Æñ¹üÿÿÿÿ8¨§Í¿Ú1
+java:S2696«"6Make the enclosing method "static" or remove this set.(½Æñ¹üÿÿÿÿ8äôÁÚ1

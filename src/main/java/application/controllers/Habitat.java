@@ -33,22 +33,13 @@ public class Habitat extends Application {
 
     private static boolean showStatistic = false;
 
+
     @FXML
     private ToggleGroup timerToggleGroup;
     @FXML
     private RadioButton timerRadioButtonShow;
     @FXML
-    private RadioButton timerRadioButtonHide;
-    @FXML
     private CheckBox statisticCheckBox;
-    @FXML
-    public GridPane statisticalPane;
-    @FXML
-    public Label firstCounterStatisticalLabel;
-    @FXML
-    public Label secondCounterStatisticalLabel;
-    @FXML
-    public Label timerStatisticalLabel;
     @FXML
     public Pane timerPane;
     @FXML
@@ -81,27 +72,34 @@ public class Habitat extends Application {
     @FXML
     void startPressed(ActionEvent event) {
         startSimulation();
-        statisticalPane.setVisible(false);
         startButton.setDisable(true);
         stopButton.setDisable(false);
     }
 
     @FXML
-    void stopPressed(ActionEvent event) {
+    void stopPressed(ActionEvent event) throws Exception {
         if(showStatistic == true) {
-            updateStatisticalLabel();
-            statisticalPane.setVisible(true);
+            timer.cancel();
+            StatisticController statisticController = new StatisticController();
+            long currentTime = System.currentTimeMillis();
+            if (!statisticController.newWindow(System.currentTimeMillis()-startTime)){
+                timer = null;
+                timer = new Timer();
+                startTime = startTime-currentTime+System.currentTimeMillis();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        long currentTime = System.currentTimeMillis();
+                        long timePassed = currentTime - startTime;
+                        update(timePassed);
+                    }
+                }, 0, 100);
+                return;
+            }
         }
         stopSimulation();
-
         startButton.setDisable(false);
         stopButton.setDisable(true);
-    }
-
-    void updateStatisticalLabel() {
-        firstCounterStatisticalLabel.setText(String.valueOf("Количество рабочих: " + antRepository.getWorkerCount()));
-        secondCounterStatisticalLabel.setText(String.valueOf("Количество воинов: " + antRepository.getWarriorCount()));
-        timerStatisticalLabel.setText("Время симуляции: " + timerLabel.getText());
     }
 
     @FXML
@@ -139,15 +137,10 @@ public class Habitat extends Application {
         Parent parent = fxmlLoader.load();
         Scene scene = new Scene(parent, WIDTH, HEIGHT);
         startTime = System.currentTimeMillis(); // Запоминаем время начала симуляции
-
-
         primaryStage.setScene(scene);
         primaryStage.show();
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-
-        });
-
     }
+
 
     public void startSimulation() {
         if (timer == null) {
