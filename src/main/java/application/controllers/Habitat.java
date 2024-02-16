@@ -1,45 +1,41 @@
 package application.controllers;
 
-import application.models.data.AbstractAnt;
 import application.models.AntRepository;
+import application.models.data.AbstractAnt;
 import application.models.data.implement.WarriorAnt;
 import application.models.data.implement.WorkerAnt;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
-
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Habitat extends Application {
-    private static final int WIDTH = 1000;
-    private static final int HEIGHT = 700;
-    private static AntRepository antRepository = AntRepository.getInstance();
-    private static ArrayList<AbstractAnt> arrayOfAnts = antRepository.getArrayList();
+public class Habitat implements Initializable {
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 700;
+    private static final AntRepository antRepository = AntRepository.getInstance();
+    private static final ArrayList<AbstractAnt> arrayOfAnts = antRepository.getArrayList();
     private static Timer timer = null;
     private static long startTime;
 
     private static boolean showStatistic = false;
+    public Button exitButton;
 
-
     @FXML
-    private ToggleGroup timerToggleGroup;
+    public ToggleGroup timerToggleGroup;
     @FXML
-    private RadioButton timerRadioButtonShow;
+    public RadioButton timerRadioButtonShow;
     @FXML
-    private CheckBox statisticCheckBox;
+    public CheckBox statisticCheckBox;
     @FXML
     public Pane timerPane;
     @FXML
@@ -50,23 +46,42 @@ public class Habitat extends Application {
     public Button stopButton;
     @FXML
     public Button startButton;
+    @FXML
+    public RadioButton timerRadioButtonHide;
+    @FXML
+    public TextField workerBornPeriodArea;
+    @FXML
+    public ComboBox<Double> probabilityBornWarriorArea;
+    @FXML
+    public ComboBox<Double> probabilityBornWorkerArea;
+    @FXML
+    public TextField warriorBornPeriodArea;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Заполняем комбобокс вероятности рождения WarriorAnt
+        for (double i = 0; i <= 1; i += 0.1) {
+            double roundedValue = Math.round(i * 10) / 10.0;
+            probabilityBornWarriorArea.getItems().add(roundedValue);
+        }
+
+        // Заполняем комбобокс вероятности рождения WorkerAnt
+        for (double i = 0; i <= 1; i += 0.1) {
+            double roundedValue = Math.round(i * 10) / 10.0;
+            probabilityBornWorkerArea.getItems().add(roundedValue);
+        }
+    }
+
+
 
     @FXML
     void switchingStatisticCheckBox(ActionEvent event) {
-        if(statisticCheckBox.isSelected()){
-            showStatistic = true;
-        } else{
-            showStatistic = false;
-        }
+        showStatistic = statisticCheckBox.isSelected();
     }
 
     @FXML
     void timerRadioButtonPressed(ActionEvent event) {
-        if(timerToggleGroup.getSelectedToggle().equals(timerRadioButtonShow)){
-            timerPane.setVisible(true);
-        } else{
-            timerPane.setVisible(false);
-        }
+        timerPane.setVisible(timerToggleGroup.getSelectedToggle().equals(timerRadioButtonShow));
     }
 
     @FXML
@@ -78,14 +93,14 @@ public class Habitat extends Application {
 
     @FXML
     void stopPressed(ActionEvent event) throws Exception {
-        if(showStatistic == true) {
+        if (showStatistic) {
             timer.cancel();
             StatisticController statisticController = new StatisticController();
             long currentTime = System.currentTimeMillis();
-            if (!statisticController.newWindow(System.currentTimeMillis()-startTime)){
+            if (!statisticController.newWindow(System.currentTimeMillis() - startTime)) {
                 timer = null;
                 timer = new Timer();
-                startTime = startTime-currentTime+System.currentTimeMillis();
+                startTime = startTime - currentTime + System.currentTimeMillis();
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
@@ -103,19 +118,25 @@ public class Habitat extends Application {
     }
 
     @FXML
-    void keyPressed(KeyEvent event) {
+    void keyPressed(KeyEvent event) throws Exception {
         if (event.getCode() == KeyCode.B) {
+            System.out.println(probabilityBornWarriorArea.getValue());
             startSimulation();
         } else if (event.getCode() == KeyCode.E) {
             stopSimulation();
         } else if (event.getCode() == KeyCode.T) {
             timerPane.setVisible(!timerPane.isVisible());
+        } else if (event.getCode() == KeyCode.M) {
+            System.out.println(this);
+            MenuController menu = new MenuController();
+            menu.newWindow(this);
         }
     }
+
     private void update(long timePassed) {
-        antRepository.createAntIfTimeElapsed(timePassed, WarriorAnt.class, WarriorAnt.APPEARANCE_TIME, WarriorAnt.APPEARANCE_CHANCE,
+        AntRepository.createAntIfTimeElapsed(timePassed, WarriorAnt.class, WarriorAnt.APPEARANCE_TIME, WarriorAnt.APPEARANCE_CHANCE,
                 (int) simulationPane.getWidth(), (int) simulationPane.getHeight());
-        antRepository.createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.APPEARANCE_TIME, WorkerAnt.APPEARANCE_CHANCE,
+        AntRepository.createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.APPEARANCE_TIME, WorkerAnt.APPEARANCE_CHANCE,
                 (int) simulationPane.getWidth(), (int) simulationPane.getHeight());
         Platform.runLater(() -> {
             timerLabel.setText((float) timePassed / 1000 + " c");
@@ -125,24 +146,14 @@ public class Habitat extends Application {
 
     private void updateAntsInView() {
         for (AbstractAnt ant : arrayOfAnts) {
-            if (! simulationPane.getChildren().contains(ant.imageView)) {
+            if (!simulationPane.getChildren().contains(ant.imageView)) {
                 simulationPane.getChildren().add(ant.imageView);
             }
         }
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Habitat.class.getResource("mainField.fxml"));
-        Parent parent = fxmlLoader.load();
-        Scene scene = new Scene(parent, WIDTH, HEIGHT);
-        startTime = System.currentTimeMillis(); // Запоминаем время начала симуляции
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-
     public void startSimulation() {
+        startTime = System.currentTimeMillis();
         if (timer == null) {
             timer = new Timer();
             startTime = System.currentTimeMillis();
@@ -169,5 +180,7 @@ public class Habitat extends Application {
         }
     }
 
-
+    public void exitApplication(ActionEvent actionEvent) {
+        Platform.exit();
+    }
 }

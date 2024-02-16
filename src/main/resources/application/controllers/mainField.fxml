@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane onKeyPressed="#keyPressed" prefHeight="506.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.Habitat">
+<AnchorPane onKeyPressed="#keyPressed" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.Habitat">
    <children>
-      <SplitPane dividerPositions="0.8" prefHeight="510.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.7239" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane prefHeight="510.0" prefWidth="642.0">
                <children>
@@ -19,15 +19,44 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="startButton" layoutX="37.0" layoutY="34.0" mnemonicParsing="false" onAction="#startPressed" prefHeight="25.0" prefWidth="122.0" text="Старт" />
-                  <Button fx:id="stopButton" layoutX="37.0" layoutY="81.0" mnemonicParsing="false" onAction="#stopPressed" prefHeight="25.0" prefWidth="122.0" text="Стоп" />
-                  <CheckBox fx:id="statisticCheckBox" layoutX="25.0" layoutY="124.0" mnemonicParsing="false" onAction="#switchingStatisticCheckBox" text="Показывать статистику" />
-                  <RadioButton fx:id="timerRadioButtonShow" layoutX="25.0" layoutY="158.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Показывать таймер">
+                  <Button fx:id="startButton" layoutX="31.0" layoutY="31.0" mnemonicParsing="false" onAction="#startPressed" prefHeight="25.0" prefWidth="122.0" text="Старт" AnchorPane.rightAnchor="175.0" />
+                  <Button fx:id="stopButton" layoutX="31.0" layoutY="79.0" mnemonicParsing="false" onAction="#stopPressed" prefHeight="25.0" prefWidth="122.0" text="Стоп" AnchorPane.rightAnchor="175.0" />
+                  <CheckBox fx:id="statisticCheckBox" layoutX="33.0" layoutY="122.0" mnemonicParsing="false" onAction="#switchingStatisticCheckBox" text="Показывать статистику" AnchorPane.rightAnchor="148.0" />
+                  <RadioButton fx:id="timerRadioButtonShow" layoutX="33.0" layoutY="157.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Показывать таймер" AnchorPane.rightAnchor="166.0">
                      <toggleGroup>
                         <ToggleGroup fx:id="timerToggleGroup" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="timerRadioButtonHide" layoutX="25.0" layoutY="182.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Убрать таймер" toggleGroup="$timerToggleGroup" />
+                  <RadioButton fx:id="timerRadioButtonHide" layoutX="33.0" layoutY="188.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Убрать таймер" toggleGroup="$timerToggleGroup" AnchorPane.rightAnchor="193.0" />
+                  <Button fx:id="exitButton" layoutX="127.0" layoutY="452.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #FF0000;" text="Выход" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="23.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="workerBornPeriodArea" layoutX="31.0" layoutY="429.0" prefHeight="25.0" prefWidth="227.0" promptText="100" AnchorPane.rightAnchor="70.0" />
+                  <TextField fx:id="warriorBornPeriodArea" layoutX="31.0" layoutY="492.0" prefHeight="25.0" prefWidth="227.0" promptText="100" AnchorPane.rightAnchor="70.0" />
+                  <ComboBox fx:id="probabilityBornWorkerArea" layoutX="31.0" layoutY="262.0" prefHeight="29.0" prefWidth="227.0" promptText="1" visibleRowCount="15" AnchorPane.rightAnchor="70.0" />
+                  <ComboBox fx:id="probabilityBornWarriorArea" layoutX="31.0" layoutY="335.0" prefHeight="29.0" prefWidth="227.0" promptText="1" visibleRowCount="15" AnchorPane.rightAnchor="70.0" />
+                  <Label layoutX="31.0" layoutY="237.0" prefHeight="25.0" prefWidth="260.0" text="Вероятность рождения рабочего" AnchorPane.rightAnchor="37.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="31.0" layoutY="310.0" prefHeight="25.0" prefWidth="260.0" text="Вероятность рождения воина" AnchorPane.rightAnchor="37.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="31.0" layoutY="404.0" prefHeight="25.0" prefWidth="260.0" text="Период рождения рабочего(мс)" AnchorPane.rightAnchor="37.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="31.0" layoutY="467.0" prefHeight="25.0" prefWidth="260.0" text="Период рождения рабочего(мс)" AnchorPane.rightAnchor="37.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </items>
