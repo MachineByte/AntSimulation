@@ -5,4 +5,6 @@ module application.startproject {
 
     opens application.controllers to javafx.fxml;
     exports application.controllers;
+    exports application;
+    opens application to javafx.fxml;
 }

@@ -1,5 +1,6 @@
-package application.controllers;
+package application;
 
+import application.controllers.Habitat;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

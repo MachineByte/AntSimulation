@@ -1,10 +1,0 @@
-
-’
-java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".( š£Ìşÿÿÿÿ8ı¡äºÚ1
-¶
-java:S6548
-"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ÉÛÀ—8¢äºÚ1
-M
-java:S3010"+Remove this assignment of "arrayListOfAnt".(Üåäûÿÿÿÿ8ƒ¢äºÚ1
-:
-java:S2119 "Save and re-use this "Random".(¼İÅf8†¢äºÚ1
