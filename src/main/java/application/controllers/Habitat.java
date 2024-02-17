@@ -65,12 +65,12 @@ public class Habitat implements Initializable {
     }
 
     public void changeWarriorBornProbability(ActionEvent actionEvent) {
-        WarriorAnt.APPEARANCE_CHANCE = probabilityBornWarriorArea.getValue();
+        WarriorAnt.setAppearanceChance(probabilityBornWarriorArea.getValue());
 
     }
 
     public void changeWorkerBornProbability(ActionEvent actionEvent) {
-        WorkerAnt.APPEARANCE_CHANCE = probabilityBornWorkerArea.getValue();
+        WorkerAnt.setAppearanceChance(probabilityBornWorkerArea.getValue());
     }
 
 
@@ -86,11 +86,11 @@ public class Habitat implements Initializable {
             if (value < 0) {
                 throw new Exception("Значение не может быть меньше нуля");
             } else {
-                WorkerAnt.APPEARANCE_TIME = value;
+                WorkerAnt.setAppearanceTime(value);
             }
         } catch (Exception e) {
-            WorkerAnt.APPEARANCE_TIME = 100;
-            workerBornPeriodArea.setText("100");
+            WorkerAnt.setAppearanceTime(WorkerAnt.DEFAULT_APPEARANCE_TIME);
+            workerBornPeriodArea.setText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_TIME));
         }
         workerBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
     }
@@ -107,12 +107,12 @@ public class Habitat implements Initializable {
                 if (value < 0) {
                     throw new Exception("Значение не может быть меньше нуля");
                 } else {
-                    WarriorAnt.APPEARANCE_TIME = value;
+                    WarriorAnt.setAppearanceTime(value);
                 }
             }
         } catch (Exception e) {
-            WarriorAnt.APPEARANCE_TIME = 100;
-            warriorBornPeriodArea.setText("100");
+            WarriorAnt.setAppearanceTime(WarriorAnt.DEFAULT_APPEARANCE_TIME);
+            warriorBornPeriodArea.setText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_TIME));
         }
         warriorBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
     }
@@ -194,9 +194,9 @@ public class Habitat implements Initializable {
     }
 
     private void update(long timePassed) {
-        AntRepository.createAntIfTimeElapsed(timePassed, WarriorAnt.class, WarriorAnt.APPEARANCE_TIME, WarriorAnt.APPEARANCE_CHANCE,
+        AntRepository.createAntIfTimeElapsed(timePassed, WarriorAnt.class, WarriorAnt.getAppearanceTime(), WarriorAnt.getAppearanceChance(),
                 (int) simulationPane.getWidth(), (int) simulationPane.getHeight());
-        AntRepository.createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.APPEARANCE_TIME, WorkerAnt.APPEARANCE_CHANCE,
+        AntRepository.createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.getAppearanceTime(), WorkerAnt.getAppearanceChance(),
                 (int) simulationPane.getWidth(), (int) simulationPane.getHeight());
         Platform.runLater(() -> {
             timerLabel.setText((float) timePassed / 1000 + " c");

@@ -112,11 +112,11 @@ public class MenuController implements Initializable {
             if (value < 0) {
                 throw new Exception("Значение не может быть меньше нуля");
             } else {
-                WarriorAnt.APPEARANCE_TIME = value;
+                WarriorAnt.setAppearanceTime(value);
             }
         } catch (Exception e) {
-            WorkerAnt.APPEARANCE_TIME = 100;
-            warriorBornPeriodArea.setText("100");
+            WarriorAnt.setAppearanceTime(WarriorAnt.DEFAULT_APPEARANCE_TIME);
+            warriorBornPeriodArea.setText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_TIME));
         }
 
         habitat.warriorBornPeriodArea.setText(warriorBornPeriodArea.getText());
@@ -125,7 +125,7 @@ public class MenuController implements Initializable {
 
     @FXML
     void changeWorkerBornPeriod(ActionEvent event) {
-        try {
+        try{
             String text = workerBornPeriodArea.getText();
             if (text.isEmpty()) {
                 throw new Exception("Введено пустое значение");
@@ -135,11 +135,11 @@ public class MenuController implements Initializable {
             if (value < 0) {
                 throw new Exception("Значение не может быть меньше нуля");
             } else {
-                WorkerAnt.APPEARANCE_TIME = value;
+                WorkerAnt.setAppearanceTime(value);
             }
         } catch (Exception e) {
-            WorkerAnt.APPEARANCE_TIME = 100;
-            workerBornPeriodArea.setText("100");
+            WorkerAnt.setAppearanceTime(WorkerAnt.DEFAULT_APPEARANCE_TIME);
+            workerBornPeriodArea.setText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_TIME));
         }
 
         habitat.workerBornPeriodArea.setText(workerBornPeriodArea.getText());
