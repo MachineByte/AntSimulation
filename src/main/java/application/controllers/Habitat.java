@@ -188,7 +188,6 @@ public class Habitat implements Initializable {
         } else if (event.getCode() == KeyCode.T) {
             timerPane.setVisible(!timerPane.isVisible());
         } else if (event.getCode() == KeyCode.M) {
-            System.out.println(this);
             MenuController menu = new MenuController();
             menu.newWindow(this);
         }

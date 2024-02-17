@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MenuController">
    <children>
       <Button fx:id="startButton" layoutX="22.0" layoutY="342.0" mnemonicParsing="false" onAction="#menuStartButtonPressed" prefHeight="25.0" prefWidth="122.0" text="Старт" />
-      <Button fx:id="stopButton" layoutX="454.0" layoutY="342.0" mnemonicParsing="false" onAction="#stopPressed" prefHeight="25.0" prefWidth="122.0" text="Стоп" />
+      <Button fx:id="stopButton" layoutX="454.0" layoutY="342.0" mnemonicParsing="false" onAction="#menuStopButtonPressed" prefHeight="25.0" prefWidth="122.0" text="Стоп" />
       <CheckBox fx:id="statisticCheckBox" layoutX="419.0" layoutY="118.0" mnemonicParsing="false" onAction="#switchingStatisticCheckBox" text="Показывать статистику" />
       <RadioButton fx:id="timerRadioButtonShow" layoutX="419.0" layoutY="43.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Показывать таймер">
          <toggleGroup>

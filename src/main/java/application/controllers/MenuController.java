@@ -60,12 +60,15 @@ public class MenuController implements Initializable {
     @FXML
     void menuStartButtonPressed(ActionEvent event) {
         habitat.startPressed(event);
-
+        startButton.setDisable(habitat.startButton.isDisable());
+        stopButton.setDisable(habitat.stopButton.isDisable());
     }
 
     @FXML
-    void stopPressed(ActionEvent event) throws Exception {
+    void menuStopButtonPressed(ActionEvent event) throws Exception {
         habitat.stopPressed(event);
+        startButton.setDisable(habitat.startButton.isDisable());
+        stopButton.setDisable(habitat.stopButton.isDisable());
     }
 
 
