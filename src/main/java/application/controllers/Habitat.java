@@ -14,10 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Habitat implements Initializable {
     public static final int WIDTH = 1200;
@@ -27,7 +24,7 @@ public class Habitat implements Initializable {
     private static Timer timer = null;
     private static long startTime;
 
-    private static boolean showStatistic = false;
+    public static boolean showStatistic = false;
     public Button exitButton;
 
     @FXML
@@ -63,15 +60,79 @@ public class Habitat implements Initializable {
         for (double i = 0; i <= 1; i += 0.1) {
             double roundedValue = Math.round(i * 10) / 10.0;
             probabilityBornWarriorArea.getItems().add(roundedValue);
-        }
-
-        // Заполняем комбобокс вероятности рождения WorkerAnt
-        for (double i = 0; i <= 1; i += 0.1) {
-            double roundedValue = Math.round(i * 10) / 10.0;
             probabilityBornWorkerArea.getItems().add(roundedValue);
         }
     }
 
+    public void changeWarriorBornProbability(ActionEvent actionEvent) {
+        WarriorAnt.APPEARANCE_CHANCE = probabilityBornWarriorArea.getValue();
+
+    }
+
+    public void changeWorkerBornProbability(ActionEvent actionEvent) {
+        WorkerAnt.APPEARANCE_CHANCE = probabilityBornWorkerArea.getValue();
+    }
+
+
+    @FXML
+    void changeWorkerBornPeriod(ActionEvent event) {
+        try {
+            String text = workerBornPeriodArea.getText();
+            if (text.isEmpty()) {
+                throw new Exception("Введено пустое значение");
+            }
+
+            double value = Double.parseDouble(text);
+            if (value < 0) {
+                throw new Exception("Значение не может быть меньше нуля");
+            } else {
+                WorkerAnt.APPEARANCE_TIME = value;
+            }
+        } catch (Exception e) {
+            WorkerAnt.APPEARANCE_TIME = 100;
+            workerBornPeriodArea.setText("100");
+        }
+        workerBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+    }
+
+
+    @FXML
+    void changeWarriorBornPeriod(ActionEvent event) {
+        try {
+            String text = warriorBornPeriodArea.getText();
+            if (text.isEmpty()) {
+                throw new Exception("Введено пустое значение");
+            } else {
+                double value = Double.parseDouble(text);
+                if (value < 0) {
+                    throw new Exception("Значение не может быть меньше нуля");
+                } else {
+                    WarriorAnt.APPEARANCE_TIME = value;
+                }
+            }
+        } catch (Exception e) {
+            WarriorAnt.APPEARANCE_TIME = 100;
+            warriorBornPeriodArea.setText("100");
+        }
+        warriorBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+    }
+
+
+//    @FXML
+//    void changeWorkerBornPeriod(ActionEvent event, double value) {
+//        WorkerAnt.APPEARANCE_TIME = value;
+//        workerBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+//    }
+//    @FXML
+//    void changeWarriorBornPeriod(ActionEvent event, double value) {
+//        WarriorAnt.APPEARANCE_TIME = value;
+//        warriorBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+//    }
+
+
+    public void setStatisticCheckBoxValue(boolean value) {
+        statisticCheckBox.setSelected(value);
+    }
 
 
     @FXML
@@ -120,7 +181,7 @@ public class Habitat implements Initializable {
     @FXML
     void keyPressed(KeyEvent event) throws Exception {
         if (event.getCode() == KeyCode.B) {
-            System.out.println(probabilityBornWarriorArea.getValue());
+//            System.out.println(probabilityBornWarriorArea.getValue());
             startSimulation();
         } else if (event.getCode() == KeyCode.E) {
             stopSimulation();
@@ -183,4 +244,7 @@ public class Habitat implements Initializable {
     public void exitApplication(ActionEvent actionEvent) {
         Platform.exit();
     }
+
+
+
 }

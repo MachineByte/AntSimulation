@@ -27,7 +27,7 @@ public class AntRepository {
         return arrayListOfAnt;
     }
 
-    public static void createAntIfTimeElapsed(long timePassed, Class<? extends AbstractAnt> antClass, float appearanceTime, float appearanceChance,
+    public static void createAntIfTimeElapsed(long timePassed, Class<? extends AbstractAnt> antClass, double appearanceTime, double appearanceChance,
                                               int simulationAreaWidth,int simulationAreaHeight) {
         Random random = new Random();
         double probability = random.nextDouble();
