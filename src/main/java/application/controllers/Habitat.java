@@ -81,13 +81,7 @@ public class Habitat implements Initializable {
             if (text.isEmpty()) {
                 throw new Exception("Введено пустое значение");
             }
-
-            double value = Double.parseDouble(text);
-            if (value < 0) {
-                throw new Exception("Значение не может быть меньше нуля");
-            } else {
-                WorkerAnt.setAppearanceTime(value);
-            }
+            WorkerAnt.setAppearanceTime(Double.parseDouble(text));
         } catch (Exception e) {
             WorkerAnt.setAppearanceTime(WorkerAnt.DEFAULT_APPEARANCE_TIME);
             workerBornPeriodArea.setText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_TIME));
@@ -102,14 +96,8 @@ public class Habitat implements Initializable {
             String text = warriorBornPeriodArea.getText();
             if (text.isEmpty()) {
                 throw new Exception("Введено пустое значение");
-            } else {
-                double value = Double.parseDouble(text);
-                if (value < 0) {
-                    throw new Exception("Значение не может быть меньше нуля");
-                } else {
-                    WarriorAnt.setAppearanceTime(value);
-                }
             }
+            WarriorAnt.setAppearanceTime(Double.parseDouble(text));
         } catch (Exception e) {
             WarriorAnt.setAppearanceTime(WarriorAnt.DEFAULT_APPEARANCE_TIME);
             warriorBornPeriodArea.setText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_TIME));
