@@ -42,11 +42,11 @@ public class Habitat implements Initializable {
     @FXML
     public Pane simulationPane;
     @FXML
+    public Button objectTableButton;
+    @FXML
     public Button stopButton;
     @FXML
     public Button startButton;
-    @FXML
-    public Button objectTableButton;
     @FXML
     public RadioButton timerRadioButtonHide;
     @FXML
