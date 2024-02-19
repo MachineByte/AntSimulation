@@ -9,7 +9,7 @@ import java.util.*;
 public class AntRepository {
     private static Vector<AbstractAnt> vectorOfAnt;
 
-    private static  HashSet<Long> setOfId;
+    private static HashSet<Long> setOfId;
 
     private static TreeMap<Long, Set<Long>> mapOfBirthTime;
     private static AntRepository instance;
@@ -66,13 +66,7 @@ public class AntRepository {
 
 
     public static void deleteAntsIfLifeTimeElapsed(long timePassed) {
-        Iterator<AbstractAnt> iterator = vectorOfAnt.iterator();
-        while (iterator.hasNext()) {
-            AbstractAnt ant = iterator.next();
-            if (ant.deathTime <= timePassed) {
-                iterator.remove();
-            }
-        }
+        vectorOfAnt.removeIf(ant -> ant.deathTime <= timePassed);
     }
 
     public long getWorkerCount(){

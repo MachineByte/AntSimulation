@@ -23,11 +23,12 @@ public class Habitat implements Initializable {
     public static final int HEIGHT = 700;
     private static final AntRepository antRepository = AntRepository.getInstance();
     private static final Vector<AbstractAnt> vectorOfAnt = antRepository.getVector();
+    private final Alert errorAlert = new Alert(Alert.AlertType.ERROR);
     private static Timer timer = null;
     private static long startTime;
     public static boolean showStatistic = false;
     public Button exitButton;
-    private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+
 
     @FXML
     public ToggleGroup timerToggleGroup;
