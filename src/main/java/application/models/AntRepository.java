@@ -82,4 +82,8 @@ public class AntRepository {
     public long getWarriorCount(){
         return vectorOfAnt.stream().filter(abstractAnt -> abstractAnt.getClass() == WarriorAnt.class).count();
     }
+
+    public TreeMap<Long, Set<Long>> getMapOfBirthTime() {
+        return mapOfBirthTime;
+    }
 }

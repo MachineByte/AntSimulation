@@ -65,24 +65,6 @@ public class WorkerAnt extends AbstractAnt implements IBehaviour {
         imageView.setFitWidth(IMAGE_WIDTH);
         imageView.setFitHeight(IMAGE_HEIGHT);
     }
-//    public int getX() {
-//        return x;
-//    }
-//
-//    public int getY() {
-//        return y;
-//    }
-//
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public long getBirthTime() {
-//        return birthTime;
-//    }
-//
-//    public long getDeathTime() {
-//        return deathTime;
-//    }
+
 
 }
