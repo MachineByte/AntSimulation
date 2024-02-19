@@ -46,6 +46,8 @@ public class Habitat implements Initializable {
     @FXML
     public Button startButton;
     @FXML
+    public Button objectTableButton;
+    @FXML
     public RadioButton timerRadioButtonHide;
     @FXML
     public TextField workerBornPeriodArea;
