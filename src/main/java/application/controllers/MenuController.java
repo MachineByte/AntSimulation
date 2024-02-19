@@ -14,12 +14,14 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class MenuController implements Initializable {
     private static final AntRepository antRepository = AntRepository.getInstance();
     private static final int WIDTH = 642;
-    private static final int HEIGHT = 280;
+    private static final int HEIGHT = 380;
     private static Habitat habitat;
+    private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
     public MenuController() {
 
@@ -101,50 +103,81 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    void changeWarriorBornPeriod(ActionEvent event) {
+    void changeAntBornPeriod(TextField bornPeriodArea, Consumer<Double> setAppearanceTime, double defaultAppearanceTime) {
+        boolean errorOccurred = false;
         try {
-            String text = warriorBornPeriodArea.getText();
-            if (text.isEmpty()) {
-                throw new Exception("Введено пустое значение");
-            }
-
-            double value = Double.parseDouble(text);
-            if (value < 0) {
-                throw new Exception("Значение не может быть меньше нуля");
-            } else {
-                WarriorAnt.setAppearanceTime(value);
-            }
+            String text = bornPeriodArea.getText();
+            setAppearanceTime.accept(Double.parseDouble(text));
+        } catch (NumberFormatException e) {
+            errorAlert.setContentText("Введено недопустимое значение");
+            errorOccurred = true;
         } catch (Exception e) {
-            WarriorAnt.setAppearanceTime(WarriorAnt.DEFAULT_APPEARANCE_TIME);
-            warriorBornPeriodArea.setText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_TIME));
+            errorAlert.setContentText(e.getMessage());
+            errorOccurred = true;
+        } finally {
+            if (errorOccurred) {
+                errorAlert.show();
+                setAppearanceTime.accept(defaultAppearanceTime);
+                bornPeriodArea.setText(String.valueOf(defaultAppearanceTime));
+            }
         }
-
-        habitat.warriorBornPeriodArea.setText(warriorBornPeriodArea.getText());
-        warriorBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+        bornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
     }
 
     @FXML
     void changeWorkerBornPeriod(ActionEvent event) {
-        try{
-            String text = workerBornPeriodArea.getText();
-            if (text.isEmpty()) {
-                throw new Exception("Введено пустое значение");
-            }
-
-            double value = Double.parseDouble(text);
-            if (value < 0) {
-                throw new Exception("Значение не может быть меньше нуля");
-            } else {
-                WorkerAnt.setAppearanceTime(value);
-            }
-        } catch (Exception e) {
-            WorkerAnt.setAppearanceTime(WorkerAnt.DEFAULT_APPEARANCE_TIME);
-            workerBornPeriodArea.setText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_TIME));
-        }
-
-        habitat.workerBornPeriodArea.setText(workerBornPeriodArea.getText());
-        workerBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+        changeAntBornPeriod(workerBornPeriodArea, WorkerAnt::setAppearanceTime, WorkerAnt.DEFAULT_APPEARANCE_TIME);
     }
+
+    @FXML
+    void changeWarriorBornPeriod(ActionEvent event) {
+        changeAntBornPeriod(warriorBornPeriodArea, WarriorAnt::setAppearanceTime, WarriorAnt.DEFAULT_APPEARANCE_TIME);
+    }
+//    @FXML
+//    void changeWarriorBornPeriod(ActionEvent event) {
+//        try {
+//            String text = warriorBornPeriodArea.getText();
+//            if (text.isEmpty()) {
+//                throw new Exception("Введено пустое значение");
+//            }
+//
+//            double value = Double.parseDouble(text);
+//            if (value < 0) {
+//                throw new Exception("Значение не может быть меньше нуля");
+//            } else {
+//                WarriorAnt.setAppearanceTime(value);
+//            }
+//        } catch (Exception e) {
+//            WarriorAnt.setAppearanceTime(WarriorAnt.DEFAULT_APPEARANCE_TIME);
+//            warriorBornPeriodArea.setText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_TIME));
+//        }
+//
+//        habitat.warriorBornPeriodArea.setText(warriorBornPeriodArea.getText());
+//        warriorBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+//    }
+//
+//    @FXML
+//    void changeWorkerBornPeriod(ActionEvent event) {
+//        try{
+//            String text = workerBornPeriodArea.getText();
+//            if (text.isEmpty()) {
+//                throw new Exception("Введено пустое значение");
+//            }
+//
+//            double value = Double.parseDouble(text);
+//            if (value < 0) {
+//                throw new Exception("Значение не может быть меньше нуля");
+//            } else {
+//                WorkerAnt.setAppearanceTime(value);
+//            }
+//        } catch (Exception e) {
+//            WorkerAnt.setAppearanceTime(WorkerAnt.DEFAULT_APPEARANCE_TIME);
+//            workerBornPeriodArea.setText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_TIME));
+//        }
+//
+//        habitat.workerBornPeriodArea.setText(workerBornPeriodArea.getText());
+//        workerBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+//    }
 
     public void newWindow(Habitat habitat) throws Exception {
         Stage stage = new Stage();

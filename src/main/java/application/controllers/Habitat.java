@@ -9,12 +9,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.*;
+import java.util.function.Consumer;
 
 public class Habitat implements Initializable {
     public static final int WIDTH = 1200;
@@ -23,9 +25,9 @@ public class Habitat implements Initializable {
     private static final ArrayList<AbstractAnt> arrayOfAnts = antRepository.getArrayList();
     private static Timer timer = null;
     private static long startTime;
-
     public static boolean showStatistic = false;
     public Button exitButton;
+    private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
     @FXML
     public ToggleGroup timerToggleGroup;
@@ -73,49 +75,37 @@ public class Habitat implements Initializable {
         WorkerAnt.setAppearanceChance(probabilityBornWorkerArea.getValue());
     }
 
+    @FXML
+    void changeAntBornPeriod(TextField bornPeriodArea, Consumer<Double> setAppearanceTime, double defaultAppearanceTime) {
+        boolean errorOccurred = false;
+        try {
+            String text = bornPeriodArea.getText();
+            setAppearanceTime.accept(Double.parseDouble(text));
+        } catch (NumberFormatException e) {
+            errorAlert.setContentText("Введено недопустимое значение");
+            errorOccurred = true;
+        } catch (Exception e) {
+            errorAlert.setContentText(e.getMessage());
+            errorOccurred = true;
+        } finally {
+            if (errorOccurred) {
+                errorAlert.show();
+                setAppearanceTime.accept(defaultAppearanceTime);
+                bornPeriodArea.setText(String.valueOf(defaultAppearanceTime));
+            }
+        }
+        bornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+    }
 
     @FXML
     void changeWorkerBornPeriod(ActionEvent event) {
-        try {
-            String text = workerBornPeriodArea.getText();
-            if (text.isEmpty()) {
-                throw new Exception("Введено пустое значение");
-            }
-            WorkerAnt.setAppearanceTime(Double.parseDouble(text));
-        } catch (Exception e) {
-            WorkerAnt.setAppearanceTime(WorkerAnt.DEFAULT_APPEARANCE_TIME);
-            workerBornPeriodArea.setText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_TIME));
-        }
-        workerBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+        changeAntBornPeriod(workerBornPeriodArea, WorkerAnt::setAppearanceTime, WorkerAnt.DEFAULT_APPEARANCE_TIME);
     }
-
 
     @FXML
     void changeWarriorBornPeriod(ActionEvent event) {
-        try {
-            String text = warriorBornPeriodArea.getText();
-            if (text.isEmpty()) {
-                throw new Exception("Введено пустое значение");
-            }
-            WarriorAnt.setAppearanceTime(Double.parseDouble(text));
-        } catch (Exception e) {
-            WarriorAnt.setAppearanceTime(WarriorAnt.DEFAULT_APPEARANCE_TIME);
-            warriorBornPeriodArea.setText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_TIME));
-        }
-        warriorBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+        changeAntBornPeriod(warriorBornPeriodArea, WarriorAnt::setAppearanceTime, WarriorAnt.DEFAULT_APPEARANCE_TIME);
     }
-
-
-//    @FXML
-//    void changeWorkerBornPeriod(ActionEvent event, double value) {
-//        WorkerAnt.APPEARANCE_TIME = value;
-//        workerBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
-//    }
-//    @FXML
-//    void changeWarriorBornPeriod(ActionEvent event, double value) {
-//        WarriorAnt.APPEARANCE_TIME = value;
-//        warriorBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
-//    }
 
 
     public void setStatisticCheckBoxValue(boolean value) {
@@ -169,7 +159,6 @@ public class Habitat implements Initializable {
     @FXML
     void keyPressed(KeyEvent event) throws Exception {
         if (event.getCode() == KeyCode.B) {
-//            System.out.println(probabilityBornWarriorArea.getValue());
             startSimulation();
         } else if (event.getCode() == KeyCode.E) {
             stopSimulation();
@@ -186,16 +175,22 @@ public class Habitat implements Initializable {
                 (int) simulationPane.getWidth(), (int) simulationPane.getHeight());
         AntRepository.createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.getAppearanceTime(), WorkerAnt.getAppearanceChance(),
                 (int) simulationPane.getWidth(), (int) simulationPane.getHeight());
+
         Platform.runLater(() -> {
             timerLabel.setText((float) timePassed / 1000 + " c");
             updateAntsInView();
         });
     }
 
-    private void updateAntsInView() {
+
+       private void updateAntsInView() {
+           simulationPane.getChildren().removeIf(node ->
+                   node instanceof ImageView &&
+                           arrayOfAnts.stream().noneMatch(ant -> ant.imageView.equals(node)));
         for (AbstractAnt ant : arrayOfAnts) {
             if (!simulationPane.getChildren().contains(ant.imageView)) {
                 simulationPane.getChildren().add(ant.imageView);
+
             }
         }
     }
@@ -206,14 +201,14 @@ public class Habitat implements Initializable {
             timer = new Timer();
             startTime = System.currentTimeMillis();
 
-            timer.schedule(new TimerTask() {
+            timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
                     long currentTime = System.currentTimeMillis();
                     long timePassed = currentTime - startTime;
                     update(timePassed);
                 }
-            }, 0, 100);
+            }, 0, 10);
         }
     }
 

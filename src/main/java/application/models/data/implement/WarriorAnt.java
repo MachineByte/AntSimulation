@@ -25,7 +25,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
 
     public static void setAppearanceChance(double appearanceChance) {
         if (appearanceChance < 0 || appearanceChance > 1) {
-            throw new IllegalArgumentException("Appearance chance must be between 0 and 1");
+            throw new IllegalArgumentException("Вероятность появления должна быть от 0 до 1");
         }
         WarriorAnt.appearanceChance = appearanceChance;
     }
@@ -36,7 +36,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
 
     public static void setAppearanceTime(double appearanceTime) {
         if (appearanceTime < 0) {
-            throw new IllegalArgumentException("Appearance time must be greater than 0");
+            throw new IllegalArgumentException("Время появления должно быть больше 0");
         }
         WarriorAnt.appearanceTime = appearanceTime;
     }
@@ -47,7 +47,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
 
     public static void setLiveTime(long liveTime) {
         if (liveTime < 0) {
-            throw new IllegalArgumentException("Live time must be greater than 0");
+            throw new IllegalArgumentException("Время жизни должно быть больше 0");
         }
         WarriorAnt.liveTime = liveTime;
     }

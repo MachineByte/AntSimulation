@@ -31,7 +31,7 @@ public class AntRepository {
                                               int simulationAreaWidth,int simulationAreaHeight) {
         Random random = new Random();
         double probability = random.nextDouble();
-        if ((Math.round(timePassed / 100.0) * 100) % appearanceTime == 0 && appearanceChance >= probability) {
+        if ( (double)timePassed % appearanceTime < 10 && appearanceChance >= probability) {
             AbstractAnt newAnt = (antClass == WarriorAnt.class) ? new WarriorAnt(simulationAreaWidth, simulationAreaHeight) : new WorkerAnt(simulationAreaWidth, simulationAreaHeight);
             arrayListOfAnt.add(newAnt);
         }
