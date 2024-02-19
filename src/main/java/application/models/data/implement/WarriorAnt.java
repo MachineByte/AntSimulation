@@ -11,12 +11,12 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
 
     public static final float IMAGE_WIDTH = 30f;
     public static final float IMAGE_HEIGHT = 30f;
-    public static final double DEFAULT_APPEARANCE_CHANCE = 1d;
-    public static final double DEFAULT_APPEARANCE_TIME = 1000d;
+    public static final double DEFAULT_APPEARANCE_CHANCE = 1;
+    public static final long DEFAULT_APPEARANCE_TIME = 1000;
     public static final long DEFAULT_LIVE_TIME = 10000;
     public static final Image IMAGE = new Image("application/controllers/warriorAnt.png");
     private static double appearanceChance = DEFAULT_APPEARANCE_CHANCE;
-    private static double appearanceTime = DEFAULT_APPEARANCE_TIME;
+    private static long appearanceTime = DEFAULT_APPEARANCE_TIME;
     private static long liveTime = DEFAULT_LIVE_TIME;
 
     public static double getAppearanceChance() {
@@ -30,11 +30,11 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         WarriorAnt.appearanceChance = appearanceChance;
     }
 
-    public static double getAppearanceTime() {
+    public static long getAppearanceTime() {
         return appearanceTime;
     }
 
-    public static void setAppearanceTime(double appearanceTime) {
+    public static void setAppearanceTime(long appearanceTime) {
         if (appearanceTime < 0) {
             throw new IllegalArgumentException("Время появления должно быть больше 0");
         }
@@ -52,11 +52,13 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         WarriorAnt.liveTime = liveTime;
     }
 
-    public WarriorAnt(int widthScene, int heightScene) {
+    public WarriorAnt(int widthScene, int heightScene, long birthTime, long id) {
         Random random = new Random();
 
         this.x = (int) (random.nextDouble() * (widthScene - IMAGE_WIDTH));
         this.y = (int) (random.nextDouble() * (heightScene - IMAGE_HEIGHT));
+        this.id = id;
+        this.birthTime = birthTime;
         this.deathTime = birthTime+ liveTime;
 
         imageView = new ImageView(IMAGE);

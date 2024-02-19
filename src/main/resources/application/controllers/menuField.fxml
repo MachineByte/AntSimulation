@@ -42,5 +42,17 @@
       <ComboBox fx:id="probabilityBornWorkerArea" layoutX="22.0" layoutY="48.0" onAction="#changeWorkerBornProbability" prefHeight="29.0" prefWidth="227.0" promptText="1" visibleRowCount="15" />
       <TextField fx:id="warriorBornPeriodArea" layoutX="22.0" layoutY="276.0" onAction="#changeWarriorBornPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" />
       <TextField fx:id="workerBornPeriodArea" layoutX="22.0" layoutY="213.0" onAction="#changeWorkerBornPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" />
+      <TextField fx:id="workerDeathPeriodArea" layoutX="289.0" layoutY="213.0" onAction="#changeWorkerDeathPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" />
+      <TextField fx:id="warriorDeathPeriodArea" layoutX="289.0" layoutY="276.0" onAction="#changeWarriorDeathPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" />
+      <Label layoutX="289.0" layoutY="188.0" prefHeight="25.0" prefWidth="260.0" text="Время жизни рабочего(мс)">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="289.0" layoutY="251.0" prefHeight="25.0" prefWidth="260.0" text="Время жизни воина(мс)">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

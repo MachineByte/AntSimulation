@@ -41,9 +41,12 @@ public class MenuController implements Initializable {
     private Button stopButton;
     @FXML
     private TextField warriorBornPeriodArea;
-
     @FXML
     private TextField workerBornPeriodArea;
+    @FXML
+    public TextField workerDeathPeriodArea;
+    @FXML
+    public TextField warriorDeathPeriodArea;
     @FXML
     private ComboBox<Double> probabilityBornWorkerArea;
     @FXML
@@ -103,11 +106,11 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    void changeAntBornPeriod(TextField bornPeriodArea, Consumer<Double> setAppearanceTime, double defaultAppearanceTime) {
+    void changeAntTextBoxTimePeriod(TextField bornPeriodArea, Consumer<Long> setAppearanceTime, long defaultAppearanceTime) {
         boolean errorOccurred = false;
         try {
             String text = bornPeriodArea.getText();
-            setAppearanceTime.accept(Double.parseDouble(text));
+            setAppearanceTime.accept(Long.parseLong(text));
         } catch (NumberFormatException e) {
             errorAlert.setContentText("Введено недопустимое значение");
             errorOccurred = true;
@@ -126,58 +129,23 @@ public class MenuController implements Initializable {
 
     @FXML
     void changeWorkerBornPeriod(ActionEvent event) {
-        changeAntBornPeriod(workerBornPeriodArea, WorkerAnt::setAppearanceTime, WorkerAnt.DEFAULT_APPEARANCE_TIME);
+        changeAntTextBoxTimePeriod(workerBornPeriodArea, WorkerAnt::setAppearanceTime, WorkerAnt.DEFAULT_APPEARANCE_TIME);
     }
 
     @FXML
     void changeWarriorBornPeriod(ActionEvent event) {
-        changeAntBornPeriod(warriorBornPeriodArea, WarriorAnt::setAppearanceTime, WarriorAnt.DEFAULT_APPEARANCE_TIME);
+        changeAntTextBoxTimePeriod(warriorBornPeriodArea, WarriorAnt::setAppearanceTime, WarriorAnt.DEFAULT_APPEARANCE_TIME);
     }
-//    @FXML
-//    void changeWarriorBornPeriod(ActionEvent event) {
-//        try {
-//            String text = warriorBornPeriodArea.getText();
-//            if (text.isEmpty()) {
-//                throw new Exception("Введено пустое значение");
-//            }
-//
-//            double value = Double.parseDouble(text);
-//            if (value < 0) {
-//                throw new Exception("Значение не может быть меньше нуля");
-//            } else {
-//                WarriorAnt.setAppearanceTime(value);
-//            }
-//        } catch (Exception e) {
-//            WarriorAnt.setAppearanceTime(WarriorAnt.DEFAULT_APPEARANCE_TIME);
-//            warriorBornPeriodArea.setText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_TIME));
-//        }
-//
-//        habitat.warriorBornPeriodArea.setText(warriorBornPeriodArea.getText());
-//        warriorBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
-//    }
-//
-//    @FXML
-//    void changeWorkerBornPeriod(ActionEvent event) {
-//        try{
-//            String text = workerBornPeriodArea.getText();
-//            if (text.isEmpty()) {
-//                throw new Exception("Введено пустое значение");
-//            }
-//
-//            double value = Double.parseDouble(text);
-//            if (value < 0) {
-//                throw new Exception("Значение не может быть меньше нуля");
-//            } else {
-//                WorkerAnt.setAppearanceTime(value);
-//            }
-//        } catch (Exception e) {
-//            WorkerAnt.setAppearanceTime(WorkerAnt.DEFAULT_APPEARANCE_TIME);
-//            workerBornPeriodArea.setText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_TIME));
-//        }
-//
-//        habitat.workerBornPeriodArea.setText(workerBornPeriodArea.getText());
-//        workerBornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
-//    }
+
+    @FXML
+    void changeWorkerDeathPeriod(ActionEvent event) {
+        changeAntTextBoxTimePeriod(workerDeathPeriodArea, WorkerAnt::setLiveTime, WorkerAnt.DEFAULT_LIVE_TIME);
+    }
+
+    @FXML
+    void changeWarriorDeathPeriod(ActionEvent event) {
+        changeAntTextBoxTimePeriod(warriorDeathPeriodArea, WarriorAnt::setLiveTime, WarriorAnt.DEFAULT_LIVE_TIME);
+    }
 
     public void newWindow(Habitat habitat) throws Exception {
         Stage stage = new Stage();

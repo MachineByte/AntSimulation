@@ -22,7 +22,7 @@ public class Habitat implements Initializable {
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 700;
     private static final AntRepository antRepository = AntRepository.getInstance();
-    private static final ArrayList<AbstractAnt> arrayOfAnts = antRepository.getArrayList();
+    private static final Vector<AbstractAnt> vectorOfAnt = antRepository.getVector();
     private static Timer timer = null;
     private static long startTime;
     public static boolean showStatistic = false;
@@ -50,11 +50,16 @@ public class Habitat implements Initializable {
     @FXML
     public TextField workerBornPeriodArea;
     @FXML
+    public TextField warriorBornPeriodArea;
+    @FXML
+    public TextField workerDeathPeriodArea;
+    @FXML
+    public TextField warriorDeathPeriodArea;
+    @FXML
     public ComboBox<Double> probabilityBornWarriorArea;
     @FXML
     public ComboBox<Double> probabilityBornWorkerArea;
-    @FXML
-    public TextField warriorBornPeriodArea;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,6 +69,8 @@ public class Habitat implements Initializable {
             probabilityBornWarriorArea.getItems().add(roundedValue);
             probabilityBornWorkerArea.getItems().add(roundedValue);
         }
+        workerBornPeriodArea.setPromptText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_TIME));
+        warriorBornPeriodArea.setPromptText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_TIME));
     }
 
     public void changeWarriorBornProbability(ActionEvent actionEvent) {
@@ -76,11 +83,11 @@ public class Habitat implements Initializable {
     }
 
     @FXML
-    void changeAntBornPeriod(TextField bornPeriodArea, Consumer<Double> setAppearanceTime, double defaultAppearanceTime) {
+    void changeAntTextBoxTimePeriod(TextField bornPeriodArea, Consumer<Long> setAppearanceTime, long defaultAppearanceTime) {
         boolean errorOccurred = false;
         try {
             String text = bornPeriodArea.getText();
-            setAppearanceTime.accept(Double.parseDouble(text));
+            setAppearanceTime.accept(Long.parseLong(text));
         } catch (NumberFormatException e) {
             errorAlert.setContentText("Введено недопустимое значение");
             errorOccurred = true;
@@ -99,14 +106,23 @@ public class Habitat implements Initializable {
 
     @FXML
     void changeWorkerBornPeriod(ActionEvent event) {
-        changeAntBornPeriod(workerBornPeriodArea, WorkerAnt::setAppearanceTime, WorkerAnt.DEFAULT_APPEARANCE_TIME);
+        changeAntTextBoxTimePeriod(workerBornPeriodArea, WorkerAnt::setAppearanceTime, WorkerAnt.DEFAULT_APPEARANCE_TIME);
     }
 
     @FXML
     void changeWarriorBornPeriod(ActionEvent event) {
-        changeAntBornPeriod(warriorBornPeriodArea, WarriorAnt::setAppearanceTime, WarriorAnt.DEFAULT_APPEARANCE_TIME);
+        changeAntTextBoxTimePeriod(warriorBornPeriodArea, WarriorAnt::setAppearanceTime, WarriorAnt.DEFAULT_APPEARANCE_TIME);
     }
 
+    @FXML
+    void changeWorkerDeathPeriod(ActionEvent event) {
+        changeAntTextBoxTimePeriod(workerDeathPeriodArea, WorkerAnt::setLiveTime, WorkerAnt.DEFAULT_LIVE_TIME);
+    }
+
+    @FXML
+    void changeWarriorDeathPeriod(ActionEvent event) {
+        changeAntTextBoxTimePeriod(warriorDeathPeriodArea, WarriorAnt::setLiveTime, WarriorAnt.DEFAULT_LIVE_TIME);
+    }
 
     public void setStatisticCheckBoxValue(boolean value) {
         statisticCheckBox.setSelected(value);
@@ -175,7 +191,7 @@ public class Habitat implements Initializable {
                 (int) simulationPane.getWidth(), (int) simulationPane.getHeight());
         AntRepository.createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.getAppearanceTime(), WorkerAnt.getAppearanceChance(),
                 (int) simulationPane.getWidth(), (int) simulationPane.getHeight());
-
+        AntRepository.deleteAntsIfLifeTimeElapsed(timePassed);
         Platform.runLater(() -> {
             timerLabel.setText((float) timePassed / 1000 + " c");
             updateAntsInView();
@@ -186,8 +202,8 @@ public class Habitat implements Initializable {
        private void updateAntsInView() {
            simulationPane.getChildren().removeIf(node ->
                    node instanceof ImageView &&
-                           arrayOfAnts.stream().noneMatch(ant -> ant.imageView.equals(node)));
-        for (AbstractAnt ant : arrayOfAnts) {
+                           vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
+        for (AbstractAnt ant : vectorOfAnt) {
             if (!simulationPane.getChildren().contains(ant.imageView)) {
                 simulationPane.getChildren().add(ant.imageView);
 
@@ -217,7 +233,7 @@ public class Habitat implements Initializable {
             timer.cancel();
             timer = null;
 
-            arrayOfAnts.clear();
+            vectorOfAnt.clear();
             simulationPane.getChildren().clear();
 
         }

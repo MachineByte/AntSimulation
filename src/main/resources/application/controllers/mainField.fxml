@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <AnchorPane onKeyPressed="#keyPressed" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.Habitat">
    <children>
       <SplitPane dividerPositions="0.7239" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -23,7 +25,7 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="timerRadioButtonHide" layoutX="33.0" layoutY="188.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Убрать таймер" toggleGroup="$timerToggleGroup" AnchorPane.rightAnchor="193.0" />
-                  <Button fx:id="exitButton" layoutX="127.0" layoutY="452.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #FF0000;" text="Выход" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="23.0">
+                  <Button fx:id="exitButton" layoutX="192.0" layoutY="655.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #FF0000;" text="Выход" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -47,11 +49,23 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="31.0" layoutY="467.0" prefHeight="25.0" prefWidth="260.0" text="Период рождения рабочего(мс)" AnchorPane.rightAnchor="37.0">
+                  <Label layoutX="31.0" layoutY="467.0" prefHeight="25.0" prefWidth="260.0" text="Период рождения воина(мс)" AnchorPane.rightAnchor="37.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
+                  <Label layoutX="31.0" layoutY="596.0" prefHeight="25.0" prefWidth="260.0" text="Время жизни воина(мс)" AnchorPane.rightAnchor="37.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="31.0" layoutY="533.0" prefHeight="25.0" prefWidth="260.0" text="Время жизни рабочего(мс)" AnchorPane.rightAnchor="37.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="warriorDeathPeriodArea" layoutX="31.0" layoutY="621.0" onAction="#changeWarriorDeathPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" AnchorPane.rightAnchor="70.0" />
+                  <TextField fx:id="workerDeathPeriodArea" layoutX="31.0" layoutY="558.0" onAction="#changeWorkerDeathPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" AnchorPane.rightAnchor="70.0" />
                </children>
             </AnchorPane>
          </items>
