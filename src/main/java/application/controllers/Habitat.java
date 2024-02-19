@@ -140,6 +140,11 @@ public class Habitat implements Initializable {
     }
 
     @FXML
+    void objectTablePress(ActionEvent event) throws Exception {
+        InfoTableController infoTable = new InfoTableController();
+        infoTable.newWindow(antRepository.getMapOfBirthTime());
+    }
+    @FXML
     void startPressed(ActionEvent event) {
         startSimulation();
         startButton.setDisable(true);

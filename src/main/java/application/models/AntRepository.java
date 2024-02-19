@@ -10,19 +10,16 @@ public class AntRepository {
     private static Vector<AbstractAnt> vectorOfAnt;
 
     private static  HashSet<Long> setOfId;
-
     private static TreeMap<Long, Set<Long>> mapOfBirthTime;
     private static AntRepository instance;
 
     private static final Map<Class<? extends AbstractAnt>, Long> lastTimeAntCreatedMap = new HashMap<>();
+    private static final Random random = new Random();
     private AntRepository(){
         vectorOfAnt = new Vector<>();
         setOfId = new HashSet<>();
         mapOfBirthTime = new TreeMap<>();
     }
-
-    private static final Random random = new Random();
-
     public static synchronized long generateUniqueRandomId() {
         long newId;
         do {
@@ -30,6 +27,10 @@ public class AntRepository {
         } while (setOfId.contains(newId));
         setOfId.add(newId);
         return newId;
+    }
+
+    public static TreeMap<Long, Set<Long>> getMapOfBirthTime() {
+        return mapOfBirthTime;
     }
     public static AntRepository getInstance() {
         // Метод для получения единственного экземпляра

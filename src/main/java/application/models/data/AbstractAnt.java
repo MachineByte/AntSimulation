@@ -12,4 +12,25 @@ public abstract class AbstractAnt {
     public long deathTime;
     public ImageView imageView;
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getBirthTime() {
+        return birthTime;
+    }
+
+    public long getDeathTime() {
+        return deathTime;
+    }
+
+
 }

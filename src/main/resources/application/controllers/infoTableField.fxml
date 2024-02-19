@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.InfoTableController">
+   <children>
+      <TableView fx:id="InfoTable" prefHeight="349.0" prefWidth="532.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="birthTimeColumn" prefWidth="138.0" text="Время рождения (сек)" />
+          <TableColumn fx:id="IdColumn" minWidth="0.0" prefWidth="129.0" text="ID" />
+        </columns>
+      </TableView>
+      <Button layoutX="468.0" layoutY="361.0" mnemonicParsing="false" onAction="#okButtonPress" prefHeight="25.0" prefWidth="50.0" text="Ок" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+   </children>
+</AnchorPane>
