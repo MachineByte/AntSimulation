@@ -1,7 +1,6 @@
 module application.startproject {
     requires javafx.controls;
     requires javafx.fxml;
-    requires lombok;
 
     opens application.models.data to javafx.base;
 

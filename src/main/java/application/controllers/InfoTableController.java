@@ -1,6 +1,8 @@
 package application.controllers;
 
 import application.models.AntRepository;
+import application.models.data.AbstractAnt;
+import application.models.data.implement.WorkerAnt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,22 +14,40 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
 public class InfoTableController {
 
-    public record AntInfo(long birthTime, long id) {
+    public class AntInfo {
+        private long birthTime;
+        private long id;
+
+        public AntInfo(long birthTime, long id) {
+            this.birthTime = birthTime;
+            this.id = id;
+        }
+
         public long getBirthTime() {
             return birthTime;
         }
+
+        public void setBirthTime(long birthTime) {
+            this.birthTime = birthTime;
+        }
+
         public long getId() {
             return id;
         }
+
+        public void setId(long id) {
+            this.id = id;
+        }
     }
 
-    private static final AntRepository antRepository = AntRepository.getInstance();
+    private static AntRepository antRepository = AntRepository.getInstance();
 
     private static final int WIDTH = 532;
     private static final int HEIGHT = 400;
