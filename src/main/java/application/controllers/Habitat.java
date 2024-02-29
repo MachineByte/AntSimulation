@@ -132,7 +132,7 @@ public class Habitat implements Initializable {
 
 
     @FXML
-    void switchingStatisticCheckBox(ActionEvent event) {
+    void switchStatisticCheckBox(ActionEvent event) {
         showStatistic = statisticCheckBox.isSelected();
     }
 
@@ -205,8 +205,7 @@ public class Habitat implements Initializable {
         });
     }
 
-
-       private void updateAntsInView() {
+    private void updateAntsInView() {
            simulationPane.getChildren().removeIf(node ->
                    node instanceof ImageView &&
                            vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
@@ -248,8 +247,6 @@ public class Habitat implements Initializable {
 
     public void exitApplication(ActionEvent actionEvent) {
         Platform.exit();
+        System.exit(0);
     }
-
-
-
 }
