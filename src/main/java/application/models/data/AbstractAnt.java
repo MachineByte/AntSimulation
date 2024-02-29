@@ -2,9 +2,9 @@ package application.models.data;
 
 import javafx.scene.image.ImageView;
 
-public abstract class AbstractAnt {
-    public int x;
-    public int y;
+public abstract class AbstractAnt extends BaseAI{
+    public double x;
+    public double y;
 
     public long id;
 
@@ -12,11 +12,11 @@ public abstract class AbstractAnt {
     public long deathTime;
     public ImageView imageView;
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -32,5 +32,8 @@ public abstract class AbstractAnt {
         return deathTime;
     }
 
+    protected synchronized void move() throws InterruptedException {
+
+    }
 
 }

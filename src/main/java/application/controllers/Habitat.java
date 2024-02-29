@@ -27,7 +27,7 @@ public class Habitat implements Initializable {
     private static long startTime;
     public static boolean showStatistic = false;
     public Button exitButton;
-    private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+    private final Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
     @FXML
     public ToggleGroup timerToggleGroup;
@@ -39,6 +39,14 @@ public class Habitat implements Initializable {
     public Pane timerPane;
     @FXML
     public Label timerLabel;
+
+    public double getSimulationPaneWidth() {
+        return simulationPane.getWidth();
+    }
+
+    public double getSimulationPaneHeight() {
+        return simulationPane.getHeight();
+    }
     @FXML
     public Pane simulationPane;
     @FXML
@@ -146,6 +154,7 @@ public class Habitat implements Initializable {
         InfoTableController infoTable = new InfoTableController();
         infoTable.newWindow(antRepository.getMapOfBirthTime());
     }
+
     @FXML
     void startPressed(ActionEvent event) {
         startSimulation();
@@ -190,6 +199,10 @@ public class Habitat implements Initializable {
         } else if (event.getCode() == KeyCode.M) {
             MenuController menu = new MenuController();
             menu.newWindow(this);
+        } else if(event.getCode() == KeyCode.W){
+            WarriorAnt.isEnabled = false;
+        } else if(event.getCode() == KeyCode.N){
+            WarriorAnt.isEnabled = true;
         }
     }
 
@@ -206,10 +219,10 @@ public class Habitat implements Initializable {
     }
 
 
-       private void updateAntsInView() {
-           simulationPane.getChildren().removeIf(node ->
-                   node instanceof ImageView &&
-                           vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
+    private void updateAntsInView() {
+        simulationPane.getChildren().removeIf(node ->
+                node instanceof ImageView &&
+                        vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
         for (AbstractAnt ant : vectorOfAnt) {
             if (!simulationPane.getChildren().contains(ant.imageView)) {
                 simulationPane.getChildren().add(ant.imageView);
@@ -248,8 +261,8 @@ public class Habitat implements Initializable {
 
     public void exitApplication(ActionEvent actionEvent) {
         Platform.exit();
+        System.exit(0);
     }
-
 
 
 }

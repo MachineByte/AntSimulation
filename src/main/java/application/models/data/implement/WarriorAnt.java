@@ -1,14 +1,15 @@
 package application.models.data.implement;
 
+import application.controllers.Habitat;
 import application.models.data.AbstractAnt;
 import application.models.data.IBehaviour;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.Random;
 
 public class WarriorAnt extends AbstractAnt implements IBehaviour {
-
     public static final float IMAGE_WIDTH = 30f;
     public static final float IMAGE_HEIGHT = 30f;
     public static final double DEFAULT_APPEARANCE_CHANCE = 1;
@@ -18,6 +19,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
     private static double appearanceChance = DEFAULT_APPEARANCE_CHANCE;
     private static long appearanceTime = DEFAULT_APPEARANCE_TIME;
     private static long liveTime = DEFAULT_LIVE_TIME;
+    public static boolean isEnabled = true;
 
     public static double getAppearanceChance() {
         return appearanceChance;
@@ -66,8 +68,41 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         imageView.setLayoutY(this.y);
         imageView.setFitWidth(IMAGE_WIDTH);
         imageView.setFitHeight(IMAGE_HEIGHT);
+
+        thread.start();
     }
 
 
+    private double angle = 1;
+    private final double radius = 50.0;
+    private final double centerX = this.x - radius;
+    private final double centerY = this.y - radius;
 
+    @Override
+    protected synchronized void move() {
+        int deltaAngle = 10;
+        angle+= deltaAngle;
+
+        this.x = (int) (centerX - radius * Math.cos(Math.toRadians(angle)));
+        this.y = (int) (centerY - radius * Math.sin(Math.toRadians(angle)));
+
+        Platform.runLater(() -> {
+            imageView.setTranslateX(this.x);
+            imageView.setTranslateY(this.y);
+            imageView.setRotate(angle);
+        });
+
+        if (angle >= 360) {
+            angle = 0;
+        }
+    }
+
+    @Override
+    protected synchronized void isAlive() throws InterruptedException {
+        if(isEnabled){
+            notify();
+        } else{
+            wait();
+        }
+    }
 }

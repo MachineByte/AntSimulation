@@ -43,7 +43,7 @@ public class AntRepository {
         return vectorOfAnt;
     }
 
-    public static void createAntIfTimeElapsed(long timePassed, Class<? extends AbstractAnt> antClass, double appearanceTime, double appearanceChance,
+    public static synchronized void createAntIfTimeElapsed(long timePassed, Class<? extends AbstractAnt> antClass, double appearanceTime, double appearanceChance,
                                               int simulationAreaWidth, int simulationAreaHeight) {
         double probability = random.nextDouble();
         long lastTimeAntCreated = lastTimeAntCreatedMap.getOrDefault(antClass, 0L);
@@ -66,13 +66,7 @@ public class AntRepository {
 
 
     public static void deleteAntsIfLifeTimeElapsed(long timePassed) {
-        Iterator<AbstractAnt> iterator = vectorOfAnt.iterator();
-        while (iterator.hasNext()) {
-            AbstractAnt ant = iterator.next();
-            if (ant.deathTime <= timePassed) {
-                iterator.remove();
-            }
-        }
+        vectorOfAnt.removeIf(ant -> ant.deathTime <= timePassed);
     }
 
     public long getWorkerCount(){

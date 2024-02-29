@@ -1,7 +1,9 @@
 package application.models.data.implement;
 
+import application.controllers.Habitat;
 import application.models.data.AbstractAnt;
 import application.models.data.IBehaviour;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -17,8 +19,7 @@ public class WorkerAnt extends AbstractAnt implements IBehaviour {
     private static double appearanceChance = DEFAULT_APPEARANCE_CHANCE;
     private static long appearanceTime = DEFAULT_APPEARANCE_TIME;
     private static long liveTime = DEFAULT_LIVE_TIME;
-
-
+    public static boolean isEnabled = true;
     public static double getAppearanceChance() {
         return appearanceChance;
     }
@@ -57,6 +58,8 @@ public class WorkerAnt extends AbstractAnt implements IBehaviour {
         this.x = (int) (random.nextDouble() * (widthScene - IMAGE_WIDTH));
         this.y = (int) (random.nextDouble() * (heightScene - IMAGE_HEIGHT));
         this.id = id;
+        startX = this.x;
+        startY = this.y;
         this.birthTime = birthTime;
         this.deathTime = birthTime+ liveTime;
         imageView = new ImageView(IMAGE);
@@ -64,7 +67,53 @@ public class WorkerAnt extends AbstractAnt implements IBehaviour {
         imageView.setLayoutY(this.y);
         imageView.setFitWidth(IMAGE_WIDTH);
         imageView.setFitHeight(IMAGE_HEIGHT);
+
+        thread.start();
     }
 
+    private final double startX;
+    private final double startY;
+    private boolean movingToTarget = true;
 
+    @Override
+    protected synchronized void move() {
+        double angle = Math.atan2(startY, startX);
+        if(this.x <= 0 && this.y <= 0){
+            movingToTarget = false;
+        }
+
+        if(this.x >= startX && this.y >= startY){
+            movingToTarget = true;
+        }
+
+        double delta = 8.0;
+        if (movingToTarget) {
+            this.x -= delta * Math.cos(angle);
+            this.y -= delta * Math.sin(angle);
+
+        } else {
+            this.x += delta * Math.cos(angle);
+            this.y += delta * Math.sin(angle);
+        }
+
+        // Обновляем отображение объекта на экране
+        Platform.runLater(() -> {
+            imageView.setLayoutX(this.x);
+            imageView.setLayoutY(this.y);
+            if(movingToTarget){
+                imageView.setRotate(Math.toDegrees(angle) - 90);
+            } else{
+                imageView.setRotate(Math.toDegrees(angle) + 90);
+            }
+        });
+    }
+
+    @Override
+    protected synchronized void isAlive() throws InterruptedException {
+        if(isEnabled){
+            notify();
+        } else{
+            wait();
+        }
+    }
 }
