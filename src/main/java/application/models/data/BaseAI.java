@@ -1,23 +1,38 @@
 package application.models.data;
 
-public abstract class BaseAI {
-    protected Thread thread = new Thread(() -> {
-        while (true) {
-                try {
-                    isAlive();
-                    move();
-                    Thread.sleep(30);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-        }
-    });
+import javafx.application.Platform;
 
-    protected synchronized void move() throws InterruptedException {
-        // Implementation of move method
+public abstract class BaseAI implements Runnable {
+    protected boolean running = true;
+    public Thread thread;
+
+    public BaseAI() {
+        thread = new Thread(this);
+        thread.start();
     }
 
-    protected synchronized void isAlive() throws InterruptedException {
+    @Override
+    public void run() {
+        while (true) {
+            while(running){
+                try {
+                    move();
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                    // Обработка прерывания потока
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
+    protected abstract void move() throws InterruptedException;
+
+    public void A() throws InterruptedException {
+        running = false;
+    }
+
+    public void B() throws InterruptedException {
+        running = true;
     }
 }

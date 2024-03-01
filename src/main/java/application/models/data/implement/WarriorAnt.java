@@ -68,8 +68,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         imageView.setLayoutY(this.y);
         imageView.setFitWidth(IMAGE_WIDTH);
         imageView.setFitHeight(IMAGE_HEIGHT);
-
-        thread.start();
+//        thread.start();
     }
 
 
@@ -79,7 +78,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
     private final double centerY = this.y - radius;
 
     @Override
-    protected synchronized void move() {
+    protected synchronized void move() throws InterruptedException {
         int deltaAngle = 10;
         angle+= deltaAngle;
 
@@ -97,12 +96,5 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         }
     }
 
-    @Override
-    protected synchronized void isAlive() throws InterruptedException {
-        if(isEnabled){
-            notify();
-        } else{
-            wait();
-        }
-    }
+
 }

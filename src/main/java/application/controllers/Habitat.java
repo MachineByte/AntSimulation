@@ -2,6 +2,7 @@ package application.controllers;
 
 import application.models.AntRepository;
 import application.models.data.AbstractAnt;
+import application.models.data.BaseAI;
 import application.models.data.implement.WarriorAnt;
 import application.models.data.implement.WorkerAnt;
 import javafx.application.Platform;
@@ -200,9 +201,9 @@ public class Habitat implements Initializable {
             MenuController menu = new MenuController();
             menu.newWindow(this);
         } else if(event.getCode() == KeyCode.W){
-            WarriorAnt.isEnabled = false;
+            antRepository.setClassThreadStatus(WarriorAnt.class, true);
         } else if(event.getCode() == KeyCode.N){
-            WarriorAnt.isEnabled = true;
+            antRepository.setClassThreadStatus(WarriorAnt.class, false);
         }
     }
 
@@ -214,21 +215,28 @@ public class Habitat implements Initializable {
         AntRepository.deleteAntsIfLifeTimeElapsed(timePassed);
         Platform.runLater(() -> {
             timerLabel.setText((float) timePassed / 1000 + " c");
-            updateAntsInView();
+            try {
+                updateAntsInView();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
 
-    private void updateAntsInView() {
+    private void updateAntsInView() throws InterruptedException {
         simulationPane.getChildren().removeIf(node ->
                 node instanceof ImageView &&
                         vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
         for (AbstractAnt ant : vectorOfAnt) {
             if (!simulationPane.getChildren().contains(ant.imageView)) {
                 simulationPane.getChildren().add(ant.imageView);
-
             }
+//            ant.A();
+//            ant.B();
         }
+
+
     }
 
     public void startSimulation() {

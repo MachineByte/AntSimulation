@@ -3,6 +3,7 @@ package application.models;
 import application.models.data.AbstractAnt;
 import application.models.data.implement.WarriorAnt;
 import application.models.data.implement.WorkerAnt;
+import javafx.application.Platform;
 
 import java.util.*;
 
@@ -80,4 +81,33 @@ public class AntRepository {
     public TreeMap<Long, Set<Long>> getMapOfBirthTime() {
         return mapOfBirthTime;
     }
+
+    public void setClassThreadStatus(Class<? extends AbstractAnt> obj, boolean status) {
+        Platform.runLater(() -> {
+            for(AbstractAnt ant : vectorOfAnt){
+                if(ant.getClass() == obj){
+                    if(status){
+                        try {
+                            ant.A();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        System.out.println(ant.thread.getId());
+
+                    } else {
+                        try {
+                            ant.B();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+
+
+
 }

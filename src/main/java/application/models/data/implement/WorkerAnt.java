@@ -67,8 +67,7 @@ public class WorkerAnt extends AbstractAnt implements IBehaviour {
         imageView.setLayoutY(this.y);
         imageView.setFitWidth(IMAGE_WIDTH);
         imageView.setFitHeight(IMAGE_HEIGHT);
-
-        thread.start();
+//        thread.start();
     }
 
     private final double startX;
@@ -106,14 +105,5 @@ public class WorkerAnt extends AbstractAnt implements IBehaviour {
                 imageView.setRotate(Math.toDegrees(angle) + 90);
             }
         });
-    }
-
-    @Override
-    protected synchronized void isAlive() throws InterruptedException {
-        if(isEnabled){
-            notify();
-        } else{
-            wait();
-        }
     }
 }

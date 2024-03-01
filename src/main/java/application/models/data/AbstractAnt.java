@@ -32,8 +32,5 @@ public abstract class AbstractAnt extends BaseAI{
         return deathTime;
     }
 
-    protected synchronized void move() throws InterruptedException {
-
-    }
 
 }
