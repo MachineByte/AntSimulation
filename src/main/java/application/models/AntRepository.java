@@ -84,29 +84,48 @@ public class AntRepository {
 
     public void setClassThreadStatus(Class<? extends AbstractAnt> obj, boolean status) {
         Platform.runLater(() -> {
-            for(AbstractAnt ant : vectorOfAnt){
-                if(ant.getClass() == obj){
-                    if(status){
-                        try {
-                            ant.A();
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        System.out.println(ant.thread.getId());
-
-                    } else {
-                        try {
-                            ant.B();
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                for(AbstractAnt ant : vectorOfAnt){
+                    if(ant.getClass() == obj){
+                        if(status){
+                            try {
+                                ant.A();
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        } else {
+                            try {
+                                ant.B();
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }
-            }
         });
     }
 
-
+//    public void setClassThreadStatus(Class<? extends AbstractAnt> obj, boolean status) {
+//        Platform.runLater(() -> {
+//            for(AbstractAnt ant : vectorOfAnt){
+//                if(ant.getClass() == obj){
+//                    if(status){
+//                        try {
+//                            ant.A();
+//                        } catch (InterruptedException e) {
+//                            throw new RuntimeException(e);
+//                        }
+//
+//                    } else {
+//                        try {
+//                            ant.B();
+//                        } catch (InterruptedException e) {
+//                            throw new RuntimeException(e);
+//                        }
+//                    }
+//                }
+//            }
+//        });
+//    }
 
 
 

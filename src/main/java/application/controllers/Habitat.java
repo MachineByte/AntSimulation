@@ -225,15 +225,16 @@ public class Habitat implements Initializable {
 
 
     private void updateAntsInView() throws InterruptedException {
+        synchronized (vectorOfAnt){
         simulationPane.getChildren().removeIf(node ->
                 node instanceof ImageView &&
                         vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
+
         for (AbstractAnt ant : vectorOfAnt) {
             if (!simulationPane.getChildren().contains(ant.imageView)) {
                 simulationPane.getChildren().add(ant.imageView);
             }
-//            ant.A();
-//            ant.B();
+        }
         }
 
 
@@ -256,14 +257,15 @@ public class Habitat implements Initializable {
         }
     }
 
-    public void stopSimulation() {
+    public void stopSimulation() throws InterruptedException {
         if (timer != null) {
             timer.cancel();
             timer = null;
-
+            for(AbstractAnt ant:vectorOfAnt){
+                ant.C();
+            }
             vectorOfAnt.clear();
             simulationPane.getChildren().clear();
-
         }
     }
 

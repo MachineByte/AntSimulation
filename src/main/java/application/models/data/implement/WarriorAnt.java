@@ -19,6 +19,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
     private static double appearanceChance = DEFAULT_APPEARANCE_CHANCE;
     private static long appearanceTime = DEFAULT_APPEARANCE_TIME;
     private static long liveTime = DEFAULT_LIVE_TIME;
+
     public static boolean isEnabled = true;
 
     public static double getAppearanceChance() {
@@ -86,9 +87,9 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         this.y = (int) (centerY - radius * Math.sin(Math.toRadians(angle)));
 
         Platform.runLater(() -> {
-            imageView.setTranslateX(this.x);
-            imageView.setTranslateY(this.y);
-            imageView.setRotate(angle);
+                imageView.setTranslateX(this.x);
+                imageView.setTranslateY(this.y);
+                imageView.setRotate(angle);
         });
 
         if (angle >= 360) {
