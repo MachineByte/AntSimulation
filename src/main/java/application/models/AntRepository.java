@@ -66,8 +66,16 @@ public class AntRepository {
     }
 
 
-    public static void deleteAntsIfLifeTimeElapsed(long timePassed) {
-        vectorOfAnt.removeIf(ant -> ant.deathTime <= timePassed);
+    public static void deleteAntsIfLifeTimeElapsed(long timePassed) throws InterruptedException {
+        Iterator<AbstractAnt> iterator = vectorOfAnt.iterator();
+        while (iterator.hasNext()) {
+            AbstractAnt ant = iterator.next();
+            if (ant.deathTime <= timePassed) {
+                iterator.remove();
+                ant.C();
+            }
+        }
+
     }
 
     public long getWorkerCount(){

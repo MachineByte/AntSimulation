@@ -178,7 +178,11 @@ public class Habitat implements Initializable {
                     public void run() {
                         long currentTime = System.currentTimeMillis();
                         long timePassed = currentTime - startTime;
-                        update(timePassed);
+                        try {
+                            update(timePassed);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }, 0, 100);
                 return;
@@ -207,7 +211,7 @@ public class Habitat implements Initializable {
         }
     }
 
-    private void update(long timePassed) {
+    private void update(long timePassed) throws InterruptedException {
         AntRepository.createAntIfTimeElapsed(timePassed, WarriorAnt.class, WarriorAnt.getAppearanceTime(), WarriorAnt.getAppearanceChance(),
                 (int) simulationPane.getWidth(), (int) simulationPane.getHeight());
         AntRepository.createAntIfTimeElapsed(timePassed, WorkerAnt.class, WorkerAnt.getAppearanceTime(), WorkerAnt.getAppearanceChance(),
@@ -226,18 +230,16 @@ public class Habitat implements Initializable {
 
     private void updateAntsInView() throws InterruptedException {
         synchronized (vectorOfAnt){
-        simulationPane.getChildren().removeIf(node ->
-                node instanceof ImageView &&
-                        vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
+            simulationPane.getChildren().removeIf(node ->
+                    node instanceof ImageView &&
+                            vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
 
-        for (AbstractAnt ant : vectorOfAnt) {
-            if (!simulationPane.getChildren().contains(ant.imageView)) {
-                simulationPane.getChildren().add(ant.imageView);
+            for (AbstractAnt ant : vectorOfAnt) {
+                if (!simulationPane.getChildren().contains(ant.imageView)) {
+                    simulationPane.getChildren().add(ant.imageView);
+                }
             }
         }
-        }
-
-
     }
 
     public void startSimulation() {
@@ -251,7 +253,11 @@ public class Habitat implements Initializable {
                 public void run() {
                     long currentTime = System.currentTimeMillis();
                     long timePassed = currentTime - startTime;
-                    update(timePassed);
+                    try {
+                        update(timePassed);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }, 0, 10);
         }

@@ -3,7 +3,7 @@ package application.models.data;
 public abstract class BaseAI implements Runnable {
     protected boolean running = true;
 
-    protected boolean interapted = false;
+    protected boolean interrupted = false;
     public Thread thread;
 
     public  Object object = new Object();
@@ -16,15 +16,11 @@ public abstract class BaseAI implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (!interrupted) {
             synchronized (object) {
                 try {
                     move();
                     Thread.sleep(25);
-                    if(interapted){
-                        thread.interrupt();
-                        break;
-                    }
                     while (!running) {
                             object.wait();
                     }
@@ -33,8 +29,8 @@ public abstract class BaseAI implements Runnable {
                     e.printStackTrace();
                 }
             }
+            System.out.println("rth");
         }
-        System.out.println("rth");
     }
 
     protected abstract void move() throws InterruptedException;
@@ -54,7 +50,7 @@ public abstract class BaseAI implements Runnable {
 
     public void C() throws InterruptedException {
         running = false;
-        interapted = true;
+        interrupted = true;
     }
 
 //    public void С() throws InterruptedException {
