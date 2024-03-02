@@ -17,19 +17,18 @@ public abstract class BaseAI implements Runnable {
     @Override
     public void run() {
         while (!interrupted) {
-            synchronized (object) {
+            synchronized (this) {
                 try {
                     move();
                     Thread.sleep(25);
                     while (!running) {
-                            object.wait();
+                            this.wait();
                     }
                 } catch (InterruptedException e) {
                     // Обработка прерывания потока
                     e.printStackTrace();
                 }
             }
-            System.out.println("rth");
         }
     }
 
@@ -39,11 +38,11 @@ public abstract class BaseAI implements Runnable {
         running = false;
     }
 
-    public void B() throws InterruptedException {
+    public  void B() throws InterruptedException {
         if(!running) {
-            synchronized (object) {
+            synchronized (this) {
                 running = true;
-                object.notify();
+                this.notify();
             }
         }
     }
@@ -53,10 +52,5 @@ public abstract class BaseAI implements Runnable {
         interrupted = true;
     }
 
-//    public void С() throws InterruptedException {
-//        synchronized (object) {
-//            object.;
-//        }
-//    }
 
 }

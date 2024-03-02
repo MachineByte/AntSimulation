@@ -208,6 +208,10 @@ public class Habitat implements Initializable {
             antRepository.setClassThreadStatus(WarriorAnt.class, true);
         } else if(event.getCode() == KeyCode.N){
             antRepository.setClassThreadStatus(WarriorAnt.class, false);
+        } else if(event.getCode() == KeyCode.O){
+            antRepository.setClassThreadStatus(WorkerAnt.class, true);
+        } else if(event.getCode() == KeyCode.P){
+            antRepository.setClassThreadStatus(WorkerAnt.class, false);
         }
     }
 

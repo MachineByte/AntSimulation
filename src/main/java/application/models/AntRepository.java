@@ -45,7 +45,7 @@ public class AntRepository {
     }
 
     public static synchronized void createAntIfTimeElapsed(long timePassed, Class<? extends AbstractAnt> antClass, double appearanceTime, double appearanceChance,
-                                              int simulationAreaWidth, int simulationAreaHeight) {
+                                              int simulationAreaWidth, int simulationAreaHeight) throws InterruptedException {
         double probability = random.nextDouble();
         long lastTimeAntCreated = lastTimeAntCreatedMap.getOrDefault(antClass, 0L);
 
@@ -94,7 +94,7 @@ public class AntRepository {
         Platform.runLater(() -> {
                 for(AbstractAnt ant : vectorOfAnt){
                     if(ant.getClass() == obj){
-                        if(status){
+                        if(!status){
                             try {
                                 ant.A();
                             } catch (InterruptedException e) {
@@ -109,6 +109,14 @@ public class AntRepository {
                         }
                     }
                 }
+
+            if(obj==WarriorAnt.class){
+                WarriorAnt.isEnabled = status;
+            }
+
+            if(obj==WorkerAnt.class){
+                WorkerAnt.isEnabled = status;
+            }
         });
     }
 

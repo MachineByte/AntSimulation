@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 
 import java.util.Random;
 
-public class WorkerAnt extends AbstractAnt implements IBehaviour {
+    public class WorkerAnt extends AbstractAnt implements IBehaviour {
     public static final float IMAGE_WIDTH = 30f;
     public static final float IMAGE_HEIGHT = 30f;
     public static final double DEFAULT_APPEARANCE_CHANCE = 1d;
@@ -52,7 +52,7 @@ public class WorkerAnt extends AbstractAnt implements IBehaviour {
         }
         WorkerAnt.liveTime = liveTime;
     }
-    public WorkerAnt(int widthScene, int heightScene, long birthTime, long id) {
+    public WorkerAnt(int widthScene, int heightScene, long birthTime, long id) throws InterruptedException {
         Random random = new Random();
 
         this.x = (int) (random.nextDouble() * (widthScene - IMAGE_WIDTH));
@@ -67,7 +67,9 @@ public class WorkerAnt extends AbstractAnt implements IBehaviour {
         imageView.setLayoutY(this.y);
         imageView.setFitWidth(IMAGE_WIDTH);
         imageView.setFitHeight(IMAGE_HEIGHT);
-//        thread.start();
+        if(!isEnabled) {
+            A();
+        }
     }
 
     private final double startX;

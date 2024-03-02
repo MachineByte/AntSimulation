@@ -55,7 +55,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         WarriorAnt.liveTime = liveTime;
     }
 
-    public WarriorAnt(int widthScene, int heightScene, long birthTime, long id) {
+    public WarriorAnt(int widthScene, int heightScene, long birthTime, long id) throws InterruptedException {
         Random random = new Random();
 
         this.x = (int) (random.nextDouble() * (widthScene - IMAGE_WIDTH));
@@ -69,7 +69,9 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         imageView.setLayoutY(this.y);
         imageView.setFitWidth(IMAGE_WIDTH);
         imageView.setFitHeight(IMAGE_HEIGHT);
-//        thread.start();
+        if(!isEnabled) {
+            A();
+        }
     }
 
 
