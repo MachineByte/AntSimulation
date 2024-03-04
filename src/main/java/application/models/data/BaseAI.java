@@ -34,11 +34,11 @@ public abstract class BaseAI implements Runnable {
 
     protected abstract void move() throws InterruptedException;
 
-    public void A() throws InterruptedException {
+    public void waitThread() throws InterruptedException {
         running = false;
     }
 
-    public  void B() throws InterruptedException {
+    public  void notifyThread() throws InterruptedException {
         if(!running) {
             synchronized (this) {
                 running = true;
@@ -47,10 +47,7 @@ public abstract class BaseAI implements Runnable {
         }
     }
 
-    public void C() throws InterruptedException {
-        running = false;
+    public void killThread() throws InterruptedException {
         interrupted = true;
     }
-
-
 }

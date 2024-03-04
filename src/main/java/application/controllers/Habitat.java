@@ -2,7 +2,6 @@ package application.controllers;
 
 import application.models.AntRepository;
 import application.models.data.AbstractAnt;
-import application.models.data.BaseAI;
 import application.models.data.implement.WarriorAnt;
 import application.models.data.implement.WorkerAnt;
 import javafx.application.Platform;
@@ -41,13 +40,6 @@ public class Habitat implements Initializable {
     @FXML
     public Label timerLabel;
 
-    public double getSimulationPaneWidth() {
-        return simulationPane.getWidth();
-    }
-
-    public double getSimulationPaneHeight() {
-        return simulationPane.getHeight();
-    }
     @FXML
     public Pane simulationPane;
     @FXML
@@ -148,6 +140,36 @@ public class Habitat implements Initializable {
     @FXML
     void timerRadioButtonPressed(ActionEvent event) {
         timerPane.setVisible(timerToggleGroup.getSelectedToggle().equals(timerRadioButtonShow));
+    }
+
+    @FXML
+    void menuHideTimerButtonPressed(ActionEvent event) {
+        timerPane.setVisible(false);
+    }
+
+    @FXML
+    void menuShowTimerButtonPressed(ActionEvent event) {
+        timerPane.setVisible(true);
+    }
+
+    @FXML
+    void waitWarriorAnt(ActionEvent event) {
+        antRepository.setClassThreadStatus(WarriorAnt.class, false);
+    }
+
+    @FXML
+    void notifyWarriorAnt(ActionEvent event) {
+        antRepository.setClassThreadStatus(WarriorAnt.class, true);
+    }
+
+    @FXML
+    void waitWorkerAnt(ActionEvent event) {
+        antRepository.setClassThreadStatus(WorkerAnt.class, false);
+    }
+
+    @FXML
+    void notifyWorkerAnt(ActionEvent event) {
+        antRepository.setClassThreadStatus(WorkerAnt.class, true);
     }
 
     @FXML
@@ -272,7 +294,7 @@ public class Habitat implements Initializable {
             timer.cancel();
             timer = null;
             for(AbstractAnt ant:vectorOfAnt){
-                ant.C();
+                ant.killThread();
             }
             vectorOfAnt.clear();
             simulationPane.getChildren().clear();
@@ -283,6 +305,4 @@ public class Habitat implements Initializable {
         Platform.exit();
         System.exit(0);
     }
-
-
 }

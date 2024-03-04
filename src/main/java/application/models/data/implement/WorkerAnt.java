@@ -1,6 +1,5 @@
 package application.models.data.implement;
 
-import application.controllers.Habitat;
 import application.models.data.AbstractAnt;
 import application.models.data.IBehaviour;
 import javafx.application.Platform;
@@ -68,7 +67,7 @@ import java.util.Random;
         imageView.setFitWidth(IMAGE_WIDTH);
         imageView.setFitHeight(IMAGE_HEIGHT);
         if(!isEnabled) {
-            A();
+            waitThread();
         }
     }
 

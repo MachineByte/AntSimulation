@@ -1,6 +1,5 @@
 package application.models.data.implement;
 
-import application.controllers.Habitat;
 import application.models.data.AbstractAnt;
 import application.models.data.IBehaviour;
 import javafx.application.Platform;
@@ -70,7 +69,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         imageView.setFitWidth(IMAGE_WIDTH);
         imageView.setFitHeight(IMAGE_HEIGHT);
         if(!isEnabled) {
-            A();
+            waitThread();
         }
     }
 
@@ -81,7 +80,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
     private final double centerY = this.y - radius;
 
     @Override
-    protected synchronized void move() throws InterruptedException {
+    protected synchronized void move() {
         int deltaAngle = 10;
         angle+= deltaAngle;
 

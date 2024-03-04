@@ -72,7 +72,7 @@ public class AntRepository {
             AbstractAnt ant = iterator.next();
             if (ant.deathTime <= timePassed) {
                 iterator.remove();
-                ant.C();
+                ant.killThread();
             }
         }
 
@@ -96,13 +96,13 @@ public class AntRepository {
                     if(ant.getClass() == obj){
                         if(!status){
                             try {
-                                ant.A();
+                                ant.waitThread();
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
                             }
                         } else {
                             try {
-                                ant.B();
+                                ant.notifyThread();
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
                             }
@@ -119,30 +119,4 @@ public class AntRepository {
             }
         });
     }
-
-//    public void setClassThreadStatus(Class<? extends AbstractAnt> obj, boolean status) {
-//        Platform.runLater(() -> {
-//            for(AbstractAnt ant : vectorOfAnt){
-//                if(ant.getClass() == obj){
-//                    if(status){
-//                        try {
-//                            ant.A();
-//                        } catch (InterruptedException e) {
-//                            throw new RuntimeException(e);
-//                        }
-//
-//                    } else {
-//                        try {
-//                            ant.B();
-//                        } catch (InterruptedException e) {
-//                            throw new RuntimeException(e);
-//                        }
-//                    }
-//                }
-//            }
-//        });
-//    }
-
-
-
 }
