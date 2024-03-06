@@ -7,7 +7,7 @@
 
 <AnchorPane onKeyPressed="#keyPressed" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.Habitat">
    <children>
-      <SplitPane dividerPositions="0.7" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.7" nodeOrientation="LEFT_TO_RIGHT" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane prefHeight="606.0" prefWidth="551.0">
                <children>
@@ -42,13 +42,19 @@
                               </Menu>
                         </items>
                       </Menu>
+                        <Menu mnemonicParsing="false" text="Статистика">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#showStatisticPressed" text="Показать" />
+                              <MenuItem mnemonicParsing="false" onAction="#hideStatisticPressed" text="Скрыть" />
+                          </items>
+                        </Menu>
                     </menus>
                   </MenuBar>
                </children>
             </AnchorPane>
-            <ScrollPane prefHeight="821.0" prefWidth="355.0">
+            <ScrollPane prefHeight="885.0" prefWidth="356.0">
                <content>
-                  <AnchorPane prefHeight="997.0" prefWidth="313.0">
+                  <AnchorPane prefHeight="936.0" prefWidth="314.0">
                      <children>
                         <Button fx:id="startButton" layoutX="31.0" layoutY="31.0" mnemonicParsing="false" onAction="#startPressed" prefHeight="25.0" prefWidth="122.0" text="Старт" AnchorPane.rightAnchor="175.0" />
                         <Button fx:id="stopButton" layoutX="31.0" layoutY="79.0" mnemonicParsing="false" onAction="#stopPressed" prefHeight="25.0" prefWidth="122.0" text="Стоп" AnchorPane.rightAnchor="175.0" />
@@ -101,6 +107,20 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Button>
+                        <ToggleButton fx:id="WarriorAntThreadButton" layoutX="16.0" layoutY="685.0" mnemonicParsing="false" onAction="#changeWarriorAntThread" prefHeight="25.0" prefWidth="227.0" text="Остановить/возобновить воинов" />
+                        <ToggleButton fx:id="WorkerAntThreadButton" layoutX="16.0" layoutY="731.0" mnemonicParsing="false" onAction="#changeWorkerAntThread" prefHeight="25.0" prefWidth="227.0" text="Остановить/возобновить рабочих" />
+                        <ComboBox fx:id="workerAntThreadPriority" layoutX="15.0" layoutY="801.0" onAction="#changeWorkerAntThreadPriority" prefHeight="25.0" prefWidth="230.0" promptText="Normal priority" />
+                        <Label layoutX="16.0" layoutY="776.0" prefHeight="25.0" prefWidth="260.0" text="Приоритет потоков рабочих">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="18.0" layoutY="843.0" prefHeight="25.0" prefWidth="260.0" text="Приоритет потоков воинов">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="warriorAntThreadPriority" layoutX="16.0" layoutY="868.0" onAction="#changeWarriorAntThreadPriority" prefHeight="25.0" prefWidth="230.0" promptText="Normal priority" />
                      </children>
                   </AnchorPane>
                </content>

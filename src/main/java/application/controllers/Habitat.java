@@ -63,6 +63,18 @@ public class Habitat implements Initializable {
     @FXML
     public ComboBox<Double> probabilityBornWorkerArea;
 
+    @FXML
+    private ComboBox<Integer> workerAntThreadPriority;
+
+    @FXML
+    private ComboBox<Integer> warriorAntThreadPriority;
+
+    @FXML
+    private ToggleButton WorkerAntThreadButton;
+
+    @FXML
+    private ToggleButton WarriorAntThreadButton;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,6 +86,15 @@ public class Habitat implements Initializable {
         }
         workerBornPeriodArea.setPromptText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_TIME));
         warriorBornPeriodArea.setPromptText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_TIME));
+
+        probabilityBornWarriorArea.setPromptText(String.valueOf(WarriorAnt.DEFAULT_APPEARANCE_CHANCE));
+        probabilityBornWorkerArea.setPromptText(String.valueOf(WorkerAnt.DEFAULT_APPEARANCE_CHANCE));
+
+        for (int i : new int[]{1, 5, 10}) {
+            workerAntThreadPriority.getItems().add(i);
+            warriorAntThreadPriority.getItems().add(i);
+        }
+
     }
 
     public void changeWarriorBornProbability(ActionEvent actionEvent) {
@@ -172,6 +193,37 @@ public class Habitat implements Initializable {
         antRepository.setClassThreadStatus(WorkerAnt.class, true);
     }
 
+    @FXML
+    public void changeWarriorAntThread(ActionEvent event){
+        antRepository.setClassThreadStatus(WarriorAnt.class, !WarriorAntThreadButton.isSelected());
+    }
+
+    @FXML
+    public void changeWorkerAntThread(ActionEvent event){
+        antRepository.setClassThreadStatus(WorkerAnt.class, !WorkerAntThreadButton.isSelected());
+    }
+
+    @FXML
+    public void changeWorkerAntThreadPriority(){
+        antRepository.setClassThreadPriority(WorkerAnt.class,workerAntThreadPriority.getValue());
+    }
+
+    @FXML
+    public void changeWarriorAntThreadPriority(){
+        antRepository.setClassThreadPriority(WarriorAnt.class,warriorAntThreadPriority.getValue());
+    }
+
+    @FXML
+    public void hideStatisticPressed(){
+        showStatistic = false ;
+        statisticCheckBox.setSelected(false);
+    }
+
+    @FXML
+    public void showStatisticPressed(){
+        showStatistic = true;
+        statisticCheckBox.setSelected(true);
+    }
     @FXML
     void objectTablePress(ActionEvent event) throws Exception {
         InfoTableController infoTable = new InfoTableController();

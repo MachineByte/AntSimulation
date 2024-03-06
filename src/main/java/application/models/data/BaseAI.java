@@ -50,4 +50,8 @@ public abstract class BaseAI implements Runnable {
     public void killThread() throws InterruptedException {
         interrupted = true;
     }
+
+    public void setPriority(int newPriority) {
+        thread.setPriority(newPriority);
+    }
 }

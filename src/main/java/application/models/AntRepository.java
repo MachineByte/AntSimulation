@@ -119,4 +119,12 @@ public class AntRepository {
             }
         });
     }
+
+    public void setClassThreadPriority(Class<? extends AbstractAnt> obj, int priority){
+        for (AbstractAnt ant: vectorOfAnt) {
+            if(ant.getClass() == obj){
+                ant.setPriority(priority);
+            }
+        }
+    }
 }
