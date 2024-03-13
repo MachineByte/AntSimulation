@@ -57,14 +57,14 @@
                   <AnchorPane prefHeight="936.0" prefWidth="314.0">
                      <children>
                         <Button fx:id="startButton" layoutX="31.0" layoutY="31.0" mnemonicParsing="false" onAction="#startPressed" prefHeight="25.0" prefWidth="122.0" text="Старт" AnchorPane.rightAnchor="175.0" />
-                        <Button fx:id="stopButton" layoutX="31.0" layoutY="79.0" mnemonicParsing="false" onAction="#stopPressed" prefHeight="25.0" prefWidth="122.0" text="Стоп" AnchorPane.rightAnchor="175.0" />
-                        <CheckBox fx:id="statisticCheckBox" layoutX="23.0" layoutY="124.0" mnemonicParsing="false" onAction="#switchingStatisticCheckBox" text="Показывать статистику" AnchorPane.leftAnchor="23.0" />
-                        <RadioButton fx:id="timerRadioButtonShow" layoutX="23.0" layoutY="158.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Показывать таймер" AnchorPane.leftAnchor="23.0">
+                        <Button fx:id="stopButton" layoutX="163.0" layoutY="31.0" mnemonicParsing="false" onAction="#stopPressed" prefHeight="25.0" prefWidth="122.0" text="Стоп" AnchorPane.rightAnchor="29.0" />
+                        <CheckBox fx:id="statisticCheckBox" layoutX="18.0" layoutY="167.0" mnemonicParsing="false" onAction="#switchingStatisticCheckBox" text="Показывать статистику" AnchorPane.leftAnchor="18.0" />
+                        <RadioButton fx:id="timerRadioButtonShow" layoutX="18.0" layoutY="199.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Показывать таймер" AnchorPane.leftAnchor="18.0">
                            <toggleGroup>
                               <ToggleGroup fx:id="timerToggleGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="timerRadioButtonHide" layoutX="16.0" layoutY="190.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Убрать таймер" toggleGroup="$timerToggleGroup" AnchorPane.leftAnchor="23.0" />
+                        <RadioButton fx:id="timerRadioButtonHide" layoutX="162.0" layoutY="199.0" mnemonicParsing="false" onAction="#timerRadioButtonPressed" selected="true" text="Убрать таймер" toggleGroup="$timerToggleGroup" AnchorPane.leftAnchor="162.0" />
                         <TextField fx:id="workerBornPeriodArea" layoutX="31.0" layoutY="429.0" onAction="#changeWorkerBornPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" AnchorPane.rightAnchor="70.0" />
                         <TextField fx:id="warriorBornPeriodArea" layoutX="31.0" layoutY="492.0" onAction="#changeWarriorBornPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" AnchorPane.rightAnchor="70.0" />
                         <ComboBox fx:id="probabilityBornWorkerArea" layoutX="31.0" layoutY="262.0" onAction="#changeWorkerBornProbability" prefHeight="29.0" prefWidth="227.0" promptText="1" visibleRowCount="15" AnchorPane.rightAnchor="70.0" />
@@ -101,8 +101,8 @@
                         </Label>
                         <TextField fx:id="warriorDeathPeriodArea" layoutX="16.0" layoutY="623.0" onAction="#changeWarriorDeathPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" AnchorPane.rightAnchor="70.0" />
                         <TextField fx:id="workerDeathPeriodArea" layoutX="31.0" layoutY="558.0" onAction="#changeWorkerDeathPeriod" prefHeight="25.0" prefWidth="227.0" promptText="100" AnchorPane.rightAnchor="70.0" />
-                        <Button fx:id="objectTableButton" layoutX="180.0" layoutY="29.0" mnemonicParsing="false" onAction="#objectTablePress" prefHeight="29.0" prefWidth="115.0" text="Текущие объекты" AnchorPane.rightAnchor="33.0" />
-                        <Button fx:id="exitButton" layoutX="162.0" layoutY="80.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #FF0000;" text="Выход" textFill="WHITE">
+                        <Button fx:id="objectTableButton" layoutX="164.0" layoutY="75.0" mnemonicParsing="false" onAction="#objectTablePress" prefHeight="29.0" prefWidth="121.0" text="Текущие объекты" AnchorPane.rightAnchor="29.0" />
+                        <Button fx:id="exitButton" layoutX="17.0" layoutY="121.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="20.0" prefWidth="122.0" style="-fx-background-color: #FF0000;" text="Выход" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -121,6 +121,7 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="warriorAntThreadPriority" layoutX="16.0" layoutY="868.0" onAction="#changeWarriorAntThreadPriority" prefHeight="25.0" prefWidth="230.0" promptText="Normal priority" />
+                        <Button layoutX="17.0" layoutY="77.0" mnemonicParsing="false" onAction="#openConsole" prefHeight="25.0" prefWidth="121.0" text="Консоль" />
                      </children>
                   </AnchorPane>
                </content>

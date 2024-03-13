@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.function.Consumer;
@@ -231,14 +232,20 @@ public class Habitat implements Initializable {
     }
 
     @FXML
-    void startPressed(ActionEvent event) {
+    void openConsole(ActionEvent event) throws IOException {
+        ConsoleFieldController console = new ConsoleFieldController();
+        console.newWindow(this);
+    }
+
+    @FXML
+    void startPressed() {
         startSimulation();
         startButton.setDisable(true);
         stopButton.setDisable(false);
     }
 
     @FXML
-    void stopPressed(ActionEvent event) throws Exception {
+    void stopPressed() throws Exception {
         if (showStatistic) {
             timer.cancel();
             StatisticController statisticController = new StatisticController();
