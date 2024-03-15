@@ -92,7 +92,7 @@ public class MenuController implements Initializable {
         } else {
             habitat.timerToggleGroup.selectToggle(habitat.timerRadioButtonHide);
         }
-        habitat.timerRadioButtonPressed(event);
+        habitat.timerRadioButtonPressed();
     }
 
     @FXML

@@ -18,7 +18,6 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
     private static double appearanceChance = DEFAULT_APPEARANCE_CHANCE;
     private static long appearanceTime = DEFAULT_APPEARANCE_TIME;
     private static long liveTime = DEFAULT_LIVE_TIME;
-
     public static boolean isEnabled = true;
 
     public static double getAppearanceChance() {

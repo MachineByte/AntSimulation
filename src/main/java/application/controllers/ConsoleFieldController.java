@@ -1,7 +1,5 @@
 package application.controllers;
 
-import application.models.data.implement.WarriorAnt;
-import application.models.data.implement.WorkerAnt;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

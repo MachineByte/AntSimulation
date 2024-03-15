@@ -14,8 +14,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -96,14 +98,54 @@ public class Habitat implements Initializable {
             warriorAntThreadPriority.getItems().add(i);
         }
 
+        try {
+            List<String> lines = Files.readAllLines(Path.of("src/main/resources/filename.txt"));
+            Iterator<String> iterator = lines.iterator();
+
+            String checkBoxValue = iterator.next();
+
+            showStatistic = Boolean.parseBoolean(String.valueOf(checkBoxValue));
+            statisticCheckBox.setSelected(Boolean.parseBoolean(checkBoxValue));
+
+            probabilityBornWorkerArea.setValue(Double.valueOf(iterator.next()));
+            changeWorkerBornProbability();
+            probabilityBornWarriorArea.setValue(Double.valueOf(iterator.next()));
+            changeWarriorBornProbability();
+
+            workerBornPeriodArea.setText(iterator.next());
+            changeWorkerBornPeriod();
+            warriorBornPeriodArea.setText(iterator.next());
+            changeWarriorBornPeriod();
+
+            workerDeathPeriodArea.setText(iterator.next());
+            changeWorkerDeathPeriod();
+            warriorDeathPeriodArea.setText(iterator.next());
+            changeWarriorDeathPeriod();
+
+            workerAntThreadPriority.setValue(Integer.valueOf(iterator.next()));
+            changeWorkerAntThreadPriority();
+            warriorAntThreadPriority.setValue(Integer.valueOf(iterator.next()));
+            changeWarriorAntThreadPriority();
+
+            WorkerAntThreadButton.setSelected(!Boolean.parseBoolean(iterator.next()));
+            changeWorkerAntThread();
+            WarriorAntThreadButton.setSelected(!Boolean.parseBoolean(iterator.next()));
+            changeWarriorAntThread();
+
+            timerRadioButtonShow.setSelected(Boolean.parseBoolean(iterator.next()));
+            timerRadioButtonPressed();
+
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Ошибка чтения из файла: " + e.getMessage());
+        }
     }
 
-    public void changeWarriorBornProbability(ActionEvent actionEvent) {
+    public void changeWarriorBornProbability() {
         WarriorAnt.setAppearanceChance(probabilityBornWarriorArea.getValue());
 
     }
 
-    public void changeWorkerBornProbability(ActionEvent actionEvent) {
+    public void changeWorkerBornProbability() {
         WorkerAnt.setAppearanceChance(probabilityBornWorkerArea.getValue());
     }
 
@@ -126,26 +168,28 @@ public class Habitat implements Initializable {
                 bornPeriodArea.setText(String.valueOf(defaultAppearanceTime));
             }
         }
-        bornPeriodArea.getScene().getRoot().requestFocus(); //перевод фокуса на основную сцену
+        if (bornPeriodArea.getScene() != null) { // Проверка на наличие сцены
+            bornPeriodArea.getScene().getRoot().requestFocus(); // перевод фокуса на основную сцену
+        }
     }
 
     @FXML
-    void changeWorkerBornPeriod(ActionEvent event) {
+    void changeWorkerBornPeriod() {
         changeAntTextBoxTimePeriod(workerBornPeriodArea, WorkerAnt::setAppearanceTime, WorkerAnt.DEFAULT_APPEARANCE_TIME);
     }
 
     @FXML
-    void changeWarriorBornPeriod(ActionEvent event) {
+    void changeWarriorBornPeriod() {
         changeAntTextBoxTimePeriod(warriorBornPeriodArea, WarriorAnt::setAppearanceTime, WarriorAnt.DEFAULT_APPEARANCE_TIME);
     }
 
     @FXML
-    void changeWorkerDeathPeriod(ActionEvent event) {
+    void changeWorkerDeathPeriod() {
         changeAntTextBoxTimePeriod(workerDeathPeriodArea, WorkerAnt::setLiveTime, WorkerAnt.DEFAULT_LIVE_TIME);
     }
 
     @FXML
-    void changeWarriorDeathPeriod(ActionEvent event) {
+    void changeWarriorDeathPeriod() {
         changeAntTextBoxTimePeriod(warriorDeathPeriodArea, WarriorAnt::setLiveTime, WarriorAnt.DEFAULT_LIVE_TIME);
     }
 
@@ -160,7 +204,7 @@ public class Habitat implements Initializable {
     }
 
     @FXML
-    void timerRadioButtonPressed(ActionEvent event) {
+    void timerRadioButtonPressed() {
         timerPane.setVisible(timerToggleGroup.getSelectedToggle().equals(timerRadioButtonShow));
     }
 
@@ -195,36 +239,37 @@ public class Habitat implements Initializable {
     }
 
     @FXML
-    public void changeWarriorAntThread(ActionEvent event){
+    public void changeWarriorAntThread() {
         antRepository.setClassThreadStatus(WarriorAnt.class, !WarriorAntThreadButton.isSelected());
     }
 
     @FXML
-    public void changeWorkerAntThread(ActionEvent event){
+    public void changeWorkerAntThread() {
         antRepository.setClassThreadStatus(WorkerAnt.class, !WorkerAntThreadButton.isSelected());
     }
 
     @FXML
-    public void changeWorkerAntThreadPriority(){
-        antRepository.setClassThreadPriority(WorkerAnt.class,workerAntThreadPriority.getValue());
+    public void changeWorkerAntThreadPriority() {
+        antRepository.setClassThreadPriority(WorkerAnt.class, workerAntThreadPriority.getValue());
     }
 
     @FXML
-    public void changeWarriorAntThreadPriority(){
-        antRepository.setClassThreadPriority(WarriorAnt.class,warriorAntThreadPriority.getValue());
+    public void changeWarriorAntThreadPriority() {
+        antRepository.setClassThreadPriority(WarriorAnt.class, warriorAntThreadPriority.getValue());
     }
 
     @FXML
-    public void hideStatisticPressed(){
-        showStatistic = false ;
+    public void hideStatisticPressed() {
+        showStatistic = false;
         statisticCheckBox.setSelected(false);
     }
 
     @FXML
-    public void showStatisticPressed(){
+    public void showStatisticPressed() {
         showStatistic = true;
         statisticCheckBox.setSelected(true);
     }
+
     @FXML
     void objectTablePress(ActionEvent event) throws Exception {
         InfoTableController infoTable = new InfoTableController();
@@ -285,14 +330,6 @@ public class Habitat implements Initializable {
         } else if (event.getCode() == KeyCode.M) {
             MenuController menu = new MenuController();
             menu.newWindow(this);
-        } else if(event.getCode() == KeyCode.W){
-            antRepository.setClassThreadStatus(WarriorAnt.class, true);
-        } else if(event.getCode() == KeyCode.N){
-            antRepository.setClassThreadStatus(WarriorAnt.class, false);
-        } else if(event.getCode() == KeyCode.O){
-            antRepository.setClassThreadStatus(WorkerAnt.class, true);
-        } else if(event.getCode() == KeyCode.P){
-            antRepository.setClassThreadStatus(WorkerAnt.class, false);
         }
     }
 
@@ -314,7 +351,7 @@ public class Habitat implements Initializable {
 
 
     private void updateAntsInView() throws InterruptedException {
-        synchronized (vectorOfAnt){
+        synchronized (vectorOfAnt) {
             simulationPane.getChildren().removeIf(node ->
                     node instanceof ImageView &&
                             vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
@@ -352,7 +389,7 @@ public class Habitat implements Initializable {
         if (timer != null) {
             timer.cancel();
             timer = null;
-            for(AbstractAnt ant:vectorOfAnt){
+            for (AbstractAnt ant : vectorOfAnt) {
                 ant.killThread();
             }
             vectorOfAnt.clear();
@@ -361,7 +398,41 @@ public class Habitat implements Initializable {
     }
 
     public void exitApplication(ActionEvent actionEvent) {
+        writeConfigFile();
         Platform.exit();
         System.exit(0);
+    }
+
+    public void writeConfigFile() {
+        try {
+            FileWriter writer = new FileWriter("src/main/resources/filename.txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            bufferedWriter.write(showStatistic + "\n");
+            bufferedWriter.write(WorkerAnt.getAppearanceChance() + "\n");
+            bufferedWriter.write(WarriorAnt.getAppearanceChance() + "\n");
+            bufferedWriter.write(WorkerAnt.getAppearanceTime() + "\n");
+            bufferedWriter.write(WarriorAnt.getAppearanceTime() + "\n");
+            bufferedWriter.write(WorkerAnt.getLiveTime() + "\n");
+            bufferedWriter.write(WarriorAnt.getLiveTime() + "\n");
+
+            if (workerAntThreadPriority.getValue() == null) {
+                bufferedWriter.write("5\n");
+            } else {
+                bufferedWriter.write(workerAntThreadPriority.getValue() + "\n");
+            }
+
+            if (warriorAntThreadPriority.getValue() == null) {
+                bufferedWriter.write("5\n");
+            } else {
+                bufferedWriter.write(warriorAntThreadPriority.getValue() + "\n");
+            }
+
+            bufferedWriter.write(WorkerAnt.isEnabled + "\n");
+            bufferedWriter.write(WarriorAnt.isEnabled + "\n");
+            bufferedWriter.write(timerRadioButtonShow.isSelected() + "\n");
+            bufferedWriter.close();
+        } catch (IOException e) {
+            System.err.println("Ошибка записи в файл: " + e.getMessage());
+        }
     }
 }
