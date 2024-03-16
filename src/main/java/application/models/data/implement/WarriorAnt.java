@@ -6,9 +6,10 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class WarriorAnt extends AbstractAnt implements IBehaviour {
+public class WarriorAnt extends AbstractAnt implements IBehaviour, Serializable {
     public static final float IMAGE_WIDTH = 30f;
     public static final float IMAGE_HEIGHT = 30f;
     public static final double DEFAULT_APPEARANCE_CHANCE = 1;
@@ -63,40 +64,44 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         this.birthTime = birthTime;
         this.deathTime = birthTime+ liveTime;
 
-        imageView = new ImageView(IMAGE);
-        imageView.setLayoutX(this.x);
-        imageView.setLayoutY(this.y);
-        imageView.setFitWidth(IMAGE_WIDTH);
-        imageView.setFitHeight(IMAGE_HEIGHT);
+        initImageView();
         if(!isEnabled) {
             waitThread();
         }
     }
 
-
+    @Override
+    public void initImageView() {
+        this.imageView = new ImageView(IMAGE);
+        imageView.setX(this.x);
+        imageView.setY(this.y);
+        imageView.setFitWidth(IMAGE_WIDTH);
+        imageView.setFitHeight(IMAGE_HEIGHT);
+    }
     private double angle = 1;
     private final double radius = 50.0;
-    private final double centerX = this.x - radius;
-    private final double centerY = this.y - radius;
+    private final double centerX = this.x;
+    private final double centerY = this.y;
 
     @Override
     protected synchronized void move() {
         int deltaAngle = 10;
-        angle+= deltaAngle;
+        angle += deltaAngle;
 
-        this.x = (int) (centerX - radius * Math.cos(Math.toRadians(angle)));
-        this.y = (int) (centerY - radius * Math.sin(Math.toRadians(angle)));
+        double newX = x - radius * Math.cos(Math.toRadians(angle));
+        double newY = y - radius * Math.sin(Math.toRadians(angle));
 
         Platform.runLater(() -> {
-                imageView.setTranslateX(this.x);
-                imageView.setTranslateY(this.y);
-                imageView.setRotate(angle);
+            // Обновлено для вывода новых координат X и Y, убран вывод для Translate и Layout
+            System.out.printf("New X: %.2f, New Y: %.2f%n", newX, newY);
+
+            imageView.setX(newX); // Здесь используется setX
+            imageView.setY(newY); // И здесь используется setY
+            imageView.setRotate(angle);
         });
 
         if (angle >= 360) {
             angle = 0;
         }
     }
-
-
 }

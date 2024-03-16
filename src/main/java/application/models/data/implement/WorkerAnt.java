@@ -6,9 +6,10 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.Random;
 
-    public class WorkerAnt extends AbstractAnt implements IBehaviour {
+    public class WorkerAnt extends AbstractAnt implements IBehaviour, Serializable {
     public static final float IMAGE_WIDTH = 30f;
     public static final float IMAGE_HEIGHT = 30f;
     public static final double DEFAULT_APPEARANCE_CHANCE = 1d;
@@ -61,16 +62,20 @@ import java.util.Random;
         startY = this.y;
         this.birthTime = birthTime;
         this.deathTime = birthTime+ liveTime;
-        imageView = new ImageView(IMAGE);
-        imageView.setLayoutX(this.x);
-        imageView.setLayoutY(this.y);
-        imageView.setFitWidth(IMAGE_WIDTH);
-        imageView.setFitHeight(IMAGE_HEIGHT);
+        initImageView();
         if(!isEnabled) {
             waitThread();
         }
     }
 
+        @Override
+    public void initImageView() {
+        this.imageView = new ImageView(IMAGE);
+        imageView.setX(this.x);
+        imageView.setY(this.y);
+        imageView.setFitWidth(IMAGE_WIDTH);
+        imageView.setFitHeight(IMAGE_HEIGHT);
+    }
     private final double startX;
     private final double startY;
     private boolean movingToTarget = true;
@@ -98,8 +103,10 @@ import java.util.Random;
 
         // Обновляем отображение объекта на экране
         Platform.runLater(() -> {
-            imageView.setLayoutX(this.x);
-            imageView.setLayoutY(this.y);
+
+            imageView.setX(this.x);
+            imageView.setY(this.y);
+
             if(movingToTarget){
                 imageView.setRotate(Math.toDegrees(angle) - 90);
             } else{

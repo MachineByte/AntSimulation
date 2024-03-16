@@ -5,6 +5,7 @@ import application.models.data.implement.WarriorAnt;
 import application.models.data.implement.WorkerAnt;
 import javafx.application.Platform;
 
+import java.io.*;
 import java.util.*;
 
 public class AntRepository {
@@ -125,6 +126,34 @@ public class AntRepository {
             if(ant.getClass() == obj){
                 ant.setPriority(priority);
             }
+        }
+    }
+
+    public static void serializeVectorOfAnts(String filepath) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filepath))) {
+            oos.writeObject(vectorOfAnt);
+        } catch (IOException e) {
+            throw new IOException("Error serializing vectorOfAnt to " + filepath, e);
+        }
+    }
+
+    public static void deserializeVectorOfAnts(String filepath) throws IOException, ClassNotFoundException {
+        Vector<AbstractAnt> vectorTempOfAnt;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filepath))) {
+            Object readObject = ois.readObject();
+            if (readObject instanceof Vector) {
+                vectorTempOfAnt = (Vector<AbstractAnt>) readObject;
+                for(AbstractAnt ant : vectorTempOfAnt){
+                    ant.initImageView();
+                    vectorOfAnt.add(ant);
+                }
+            } else {
+                throw new ClassNotFoundException("The read object is not of type Vector<AbstractAnt>");
+            }
+        } catch (IOException e) {
+            throw new IOException("Error deserializing vectorOfAnt from " + filepath, e);
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException("Class not found during deserialization", e);
         }
     }
 }

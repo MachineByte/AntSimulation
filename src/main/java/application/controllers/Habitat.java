@@ -19,6 +19,8 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public class Habitat implements Initializable {
+
+    String file = "antSave.ser";
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 700;
     private static final AntRepository antRepository = AntRepository.getInstance();
@@ -286,6 +288,12 @@ public class Habitat implements Initializable {
             antRepository.setClassThreadStatus(WorkerAnt.class, true);
         } else if(event.getCode() == KeyCode.P){
             antRepository.setClassThreadStatus(WorkerAnt.class, false);
+        } else if(event.getCode() == KeyCode.S) {
+            AntRepository.serializeVectorOfAnts(file);
+        } else if(event.getCode() == KeyCode.D) {
+            stopSimulation();
+            AntRepository.deserializeVectorOfAnts(file);
+            startSimulation();
         }
     }
 
