@@ -27,7 +27,7 @@ public class Habitat implements Initializable {
     private static final AntRepository antRepository = AntRepository.getInstance();
     private static final Vector<AbstractAnt> vectorOfAnt = antRepository.getVector();
     private static Timer timer = null;
-    private static long startTime;
+    public static long startTime;
     public static boolean showStatistic = false;
     public Button exitButton;
     private final Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -330,6 +330,12 @@ public class Habitat implements Initializable {
         } else if (event.getCode() == KeyCode.M) {
             MenuController menu = new MenuController();
             menu.newWindow(this);
+        } else if (event.getCode() == KeyCode.S) {
+            antRepository.serializeAllObjects();
+        } else if (event.getCode() == KeyCode.D) {
+            stopPressed();
+            startPressed();
+            antRepository.deserializeAllObjects();
         }
     }
 
@@ -369,7 +375,7 @@ public class Habitat implements Initializable {
         if (timer == null) {
             timer = new Timer();
             startTime = System.currentTimeMillis();
-
+//            System.out.println(startTime);
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {

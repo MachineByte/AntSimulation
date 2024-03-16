@@ -6,9 +6,10 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.Random;
 
-    public class WorkerAnt extends AbstractAnt implements IBehaviour {
+    public class WorkerAnt extends AbstractAnt implements IBehaviour, Serializable {
     public static final float IMAGE_WIDTH = 30f;
     public static final float IMAGE_HEIGHT = 30f;
     public static final double DEFAULT_APPEARANCE_CHANCE = 1d;
@@ -17,8 +18,9 @@ import java.util.Random;
     public static final Image IMAGE = new Image("application/controllers/workerAnt.png");
     private static double appearanceChance = DEFAULT_APPEARANCE_CHANCE;
     private static long appearanceTime = DEFAULT_APPEARANCE_TIME;
-    private static long liveTime = DEFAULT_LIVE_TIME;
+    public static long liveTime = DEFAULT_LIVE_TIME;
     public static boolean isEnabled = true;
+
     public static double getAppearanceChance() {
         return appearanceChance;
     }
@@ -61,19 +63,15 @@ import java.util.Random;
         startY = this.y;
         this.birthTime = birthTime;
         this.deathTime = birthTime+ liveTime;
-        imageView = new ImageView(IMAGE);
-        imageView.setLayoutX(this.x);
-        imageView.setLayoutY(this.y);
-        imageView.setFitWidth(IMAGE_WIDTH);
-        imageView.setFitHeight(IMAGE_HEIGHT);
+        initImageView();
         if(!isEnabled) {
             waitThread();
         }
     }
 
-    private final double startX;
-    private final double startY;
-    private boolean movingToTarget = true;
+    public double startX;
+    public double startY;
+    public boolean movingToTarget = true;
 
     @Override
     protected synchronized void move() {
@@ -107,4 +105,31 @@ import java.util.Random;
             }
         });
     }
-}
+
+        @Override
+        public String toString() {
+            return "WorkerAnt{" +
+                    "startX=" + startX +
+                    ", startY=" + startY +
+                    ", movingToTarget=" + movingToTarget +
+                    ", x=" + x +
+                    ", y=" + y +
+                    ", id=" + id +
+                    ", birthTime=" + birthTime +
+                    ", deathTime=" + deathTime +
+                    ", imageView=" + imageView +
+                    ", running=" + running +
+                    ", interrupted=" + interrupted +
+                    ", thread=" + thread +
+                    ", object=" + object +
+                    '}';
+        }
+
+        public void initImageView() {
+            imageView = new ImageView(IMAGE);
+            imageView.setLayoutX(this.x);
+            imageView.setLayoutY(this.y);
+            imageView.setFitWidth(IMAGE_WIDTH);
+            imageView.setFitHeight(IMAGE_HEIGHT);
+        }
+    }

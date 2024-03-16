@@ -6,9 +6,10 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class WarriorAnt extends AbstractAnt implements IBehaviour {
+public class WarriorAnt extends AbstractAnt implements IBehaviour, Serializable {
     public static final float IMAGE_WIDTH = 30f;
     public static final float IMAGE_HEIGHT = 30f;
     public static final double DEFAULT_APPEARANCE_CHANCE = 1;
@@ -17,7 +18,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
     public static final Image IMAGE = new Image("application/controllers/warriorAnt.png");
     private static double appearanceChance = DEFAULT_APPEARANCE_CHANCE;
     private static long appearanceTime = DEFAULT_APPEARANCE_TIME;
-    private static long liveTime = DEFAULT_LIVE_TIME;
+    public static long liveTime = DEFAULT_LIVE_TIME;
     public static boolean isEnabled = true;
 
     public static double getAppearanceChance() {
@@ -60,23 +61,19 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         this.y = (int) (random.nextDouble() * (heightScene - IMAGE_HEIGHT));
         this.id = id;
         this.birthTime = birthTime;
-        this.deathTime = birthTime+ liveTime;
+        this.deathTime = birthTime + liveTime;
+        initImageView();
 
-        imageView = new ImageView(IMAGE);
-        imageView.setLayoutX(this.x);
-        imageView.setLayoutY(this.y);
-        imageView.setFitWidth(IMAGE_WIDTH);
-        imageView.setFitHeight(IMAGE_HEIGHT);
         if(!isEnabled) {
             waitThread();
         }
     }
 
 
-    private double angle = 1;
-    private final double radius = 50.0;
-    private final double centerX = this.x - radius;
-    private final double centerY = this.y - radius;
+    public double angle = 1;
+    public final double radius = 50.0;
+    public double centerX = this.x - radius;
+    public double centerY = this.y - radius;
 
     @Override
     protected synchronized void move() {
@@ -85,7 +82,6 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
 
         this.x = (int) (centerX - radius * Math.cos(Math.toRadians(angle)));
         this.y = (int) (centerY - radius * Math.sin(Math.toRadians(angle)));
-
         Platform.runLater(() -> {
                 imageView.setTranslateX(this.x);
                 imageView.setTranslateY(this.y);
@@ -97,5 +93,30 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour {
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "WarriorAnt{" +
+                "angle=" + angle +
+                ", radius=" + radius +
+                ", centerX=" + centerX +
+                ", centerY=" + centerY +
+                ", x=" + x +
+                ", y=" + y +
+                ", id=" + id +
+                ", birthTime=" + birthTime +
+                ", deathTime=" + deathTime +
+                ", imageView=" + imageView +
+                ", running=" + running +
+                ", interrupted=" + interrupted +
+                ", thread=" + thread +
+                ", object=" + object +
+                '}';
+    }
+    public void initImageView() {
+        imageView = new ImageView(IMAGE);
+        imageView.setLayoutX(this.x);
+        imageView.setLayoutY(this.y);
+        imageView.setFitWidth(IMAGE_WIDTH);
+        imageView.setFitHeight(IMAGE_HEIGHT);
+    }
 }

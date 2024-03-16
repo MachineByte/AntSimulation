@@ -2,15 +2,16 @@ package application.models.data;
 
 import javafx.scene.image.ImageView;
 
-public abstract class AbstractAnt extends BaseAI{
+import java.io.Serializable;
+
+public abstract class AbstractAnt extends BaseAI implements Serializable {
     public double x;
     public double y;
 
     public long id;
-
     public long birthTime;
     public long deathTime;
-    public ImageView imageView;
+    public transient ImageView imageView;
 
     public double getX() {
         return x;

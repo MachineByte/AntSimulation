@@ -1,5 +1,7 @@
 package application.models.data;
 
+import java.io.Serializable;
+
 public abstract class BaseAI implements Runnable {
     protected boolean running = true;
 
@@ -19,7 +21,7 @@ public abstract class BaseAI implements Runnable {
         while (!interrupted) {
             synchronized (this) {
                 try {
-                    move();
+//                    move();
                     Thread.sleep(25);
                     while (!running) {
                             this.wait();
