@@ -9,7 +9,6 @@ public abstract class AbstractAnt extends BaseAI implements Serializable {
     public double y;
 
     public long id;
-
     public long birthTime;
     public long deathTime;
     public transient ImageView imageView;

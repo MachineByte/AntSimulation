@@ -64,14 +64,14 @@ public class MenuController implements Initializable {
 
     @FXML
     void menuStartButtonPressed(ActionEvent event) {
-        habitat.startPressed(event);
+        habitat.startPressed();
         startButton.setDisable(habitat.startButton.isDisable());
         stopButton.setDisable(habitat.stopButton.isDisable());
     }
 
     @FXML
     void menuStopButtonPressed(ActionEvent event) throws Exception {
-        habitat.stopPressed(event);
+        habitat.stopPressed();
         startButton.setDisable(habitat.startButton.isDisable());
         stopButton.setDisable(habitat.stopButton.isDisable());
     }
@@ -92,7 +92,7 @@ public class MenuController implements Initializable {
         } else {
             habitat.timerToggleGroup.selectToggle(habitat.timerRadioButtonHide);
         }
-        habitat.timerRadioButtonPressed(event);
+        habitat.timerRadioButtonPressed();
     }
 
     @FXML
@@ -150,7 +150,6 @@ public class MenuController implements Initializable {
     public void newWindow(Habitat habitat) throws Exception {
         Stage stage = new Stage();
         MenuController.habitat = habitat;
-        System.out.println(habitat);
         FXMLLoader fxmlLoader = new FXMLLoader(MenuController.class.getResource("menuField.fxml"));
 
         Parent parent = fxmlLoader.load();
