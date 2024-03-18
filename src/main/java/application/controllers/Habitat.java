@@ -342,9 +342,9 @@ public class Habitat implements Initializable {
         } else if(event.getCode() == KeyCode.S) {
             AntRepository.serializeVectorOfAnts(file);
         } else if(event.getCode() == KeyCode.D) {
-            stopSimulation();
+            stopPressed();
             AntRepository.deserializeVectorOfAnts(file);
-            startSimulation();
+            startPressed();
         }
     }
 

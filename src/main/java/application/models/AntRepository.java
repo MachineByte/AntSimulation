@@ -1,5 +1,6 @@
 package application.models;
 
+import application.controllers.Habitat;
 import application.models.data.AbstractAnt;
 import application.models.data.implement.WarriorAnt;
 import application.models.data.implement.WorkerAnt;
@@ -11,13 +12,14 @@ import java.util.*;
 public class AntRepository {
     private static Vector<AbstractAnt> vectorOfAnt;
 
-    private static  HashSet<Long> setOfId;
+    private static HashSet<Long> setOfId;
 
     private static TreeMap<Long, Set<Long>> mapOfBirthTime;
     private static AntRepository instance;
 
     private static final Map<Class<? extends AbstractAnt>, Long> lastTimeAntCreatedMap = new HashMap<>();
-    private AntRepository(){
+
+    private AntRepository() {
         vectorOfAnt = new Vector<>();
         setOfId = new HashSet<>();
         mapOfBirthTime = new TreeMap<>();
@@ -33,6 +35,7 @@ public class AntRepository {
         setOfId.add(newId);
         return newId;
     }
+
     public static AntRepository getInstance() {
         // Метод для получения единственного экземпляра
         if (instance == null) {
@@ -46,12 +49,12 @@ public class AntRepository {
     }
 
     public static synchronized void createAntIfTimeElapsed(long timePassed, Class<? extends AbstractAnt> antClass, double appearanceTime, double appearanceChance,
-                                              int simulationAreaWidth, int simulationAreaHeight) throws InterruptedException {
+                                                           int simulationAreaWidth, int simulationAreaHeight) throws InterruptedException {
         double probability = random.nextDouble();
         long lastTimeAntCreated = lastTimeAntCreatedMap.getOrDefault(antClass, 0L);
 
         if (timePassed - lastTimeAntCreated >= appearanceTime) {
-            if(appearanceChance >= probability) {
+            if (appearanceChance >= probability) {
                 long newId = generateUniqueRandomId(); // Генерация уникального случайного ID
                 AbstractAnt newAnt = (antClass == WarriorAnt.class) ?
                         new WarriorAnt(simulationAreaWidth, simulationAreaHeight, timePassed, newId) :
@@ -76,14 +79,13 @@ public class AntRepository {
                 ant.killThread();
             }
         }
-
     }
 
-    public long getWorkerCount(){
+    public long getWorkerCount() {
         return vectorOfAnt.stream().filter(abstractAnt -> abstractAnt.getClass() == WorkerAnt.class).count();
     }
 
-    public long getWarriorCount(){
+    public long getWarriorCount() {
         return vectorOfAnt.stream().filter(abstractAnt -> abstractAnt.getClass() == WarriorAnt.class).count();
     }
 
@@ -93,37 +95,37 @@ public class AntRepository {
 
     public void setClassThreadStatus(Class<? extends AbstractAnt> obj, boolean status) {
         Platform.runLater(() -> {
-                for(AbstractAnt ant : vectorOfAnt){
-                    if(ant.getClass() == obj){
-                        if(!status){
-                            try {
-                                ant.waitThread();
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                        } else {
-                            try {
-                                ant.notifyThread();
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
+            for (AbstractAnt ant : vectorOfAnt) {
+                if (ant.getClass() == obj) {
+                    if (!status) {
+                        try {
+                            ant.waitThread();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        try {
+                            ant.notifyThread();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
                         }
                     }
                 }
+            }
 
-            if(obj==WarriorAnt.class){
+            if (obj == WarriorAnt.class) {
                 WarriorAnt.isEnabled = status;
             }
 
-            if(obj==WorkerAnt.class){
+            if (obj == WorkerAnt.class) {
                 WorkerAnt.isEnabled = status;
             }
         });
     }
 
-    public void setClassThreadPriority(Class<? extends AbstractAnt> obj, int priority){
-        for (AbstractAnt ant: vectorOfAnt) {
-            if(ant.getClass() == obj){
+    public void setClassThreadPriority(Class<? extends AbstractAnt> obj, int priority) {
+        for (AbstractAnt ant : vectorOfAnt) {
+            if (ant.getClass() == obj) {
                 ant.setPriority(priority);
             }
         }
@@ -143,7 +145,9 @@ public class AntRepository {
             Object readObject = ois.readObject();
             if (readObject instanceof Vector) {
                 vectorTempOfAnt = (Vector<AbstractAnt>) readObject;
-                for(AbstractAnt ant : vectorTempOfAnt){
+                for (AbstractAnt ant : vectorTempOfAnt) {
+                    ant.deathTime = ant.deathTime - ant.birthTime;
+                    ant.birthTime = 0;
                     ant.initImageView();
                     vectorOfAnt.add(ant);
                 }

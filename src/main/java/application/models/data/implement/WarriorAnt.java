@@ -91,9 +91,6 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour, Serializable 
         double newY = y - radius * Math.sin(Math.toRadians(angle));
 
         Platform.runLater(() -> {
-            // Обновлено для вывода новых координат X и Y, убран вывод для Translate и Layout
-            System.out.printf("New X: %.2f, New Y: %.2f%n", newX, newY);
-
             imageView.setX(newX); // Здесь используется setX
             imageView.setY(newY); // И здесь используется setY
             imageView.setRotate(angle);
