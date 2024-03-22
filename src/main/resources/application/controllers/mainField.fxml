@@ -11,6 +11,7 @@
          <items>
             <AnchorPane prefHeight="606.0" prefWidth="551.0">
                <children>
+                  <Label fx:id="ipLabel" prefHeight="0.0" prefWidth="108.0" text="ip" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="10.0" />
                   <Pane fx:id="simulationPane" layoutX="-3.0" layoutY="34.0" prefHeight="663.0" prefWidth="835.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="34.0" />
                   <MenuBar prefHeight="32.0" prefWidth="835.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <menus>

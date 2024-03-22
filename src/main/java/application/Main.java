@@ -13,7 +13,6 @@ public class Main  extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         startScene("mainField.fxml");
-//        startScene("menuField.fxml");
     }
 
     public void startScene(String path) throws IOException {
@@ -22,7 +21,9 @@ public class Main  extends Application {
         Scene scene = new Scene(parent, Habitat.WIDTH, Habitat.HEIGHT);
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setOnCloseRequest(Habitat.getCloseEventHandler());
         stage.show();
+
     }
 
 

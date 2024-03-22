@@ -14,9 +14,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.Vector;
 import java.util.function.Consumer;
 
 public class Habitat implements Initializable {
@@ -26,7 +30,7 @@ public class Habitat implements Initializable {
     public static final int HEIGHT = 700;
     private static final AntRepository antRepository = AntRepository.getInstance();
 
-    private static final TcpConnection tcpConnection = TcpConnection.getInstance();
+    public static final TcpConnection tcpConnection = TcpConnection.getInstance();
     private static final Vector<AbstractAnt> vectorOfAnt = antRepository.getVector();
     private static Timer timer = null;
     private static long startTime;
@@ -45,6 +49,8 @@ public class Habitat implements Initializable {
     @FXML
     public Label timerLabel;
 
+    @FXML
+    private Label ipLabel;
     @FXML
     public Pane simulationPane;
     @FXML
@@ -199,36 +205,37 @@ public class Habitat implements Initializable {
     }
 
     @FXML
-    public void changeWarriorAntThread(ActionEvent event){
+    public void changeWarriorAntThread(ActionEvent event) {
         antRepository.setClassThreadStatus(WarriorAnt.class, !WarriorAntThreadButton.isSelected());
     }
 
     @FXML
-    public void changeWorkerAntThread(ActionEvent event){
+    public void changeWorkerAntThread(ActionEvent event) {
         antRepository.setClassThreadStatus(WorkerAnt.class, !WorkerAntThreadButton.isSelected());
     }
 
     @FXML
-    public void changeWorkerAntThreadPriority(){
-        antRepository.setClassThreadPriority(WorkerAnt.class,workerAntThreadPriority.getValue());
+    public void changeWorkerAntThreadPriority() {
+        antRepository.setClassThreadPriority(WorkerAnt.class, workerAntThreadPriority.getValue());
     }
 
     @FXML
-    public void changeWarriorAntThreadPriority(){
-        antRepository.setClassThreadPriority(WarriorAnt.class,warriorAntThreadPriority.getValue());
+    public void changeWarriorAntThreadPriority() {
+        antRepository.setClassThreadPriority(WarriorAnt.class, warriorAntThreadPriority.getValue());
     }
 
     @FXML
-    public void hideStatisticPressed(){
-        showStatistic = false ;
+    public void hideStatisticPressed() {
+        showStatistic = false;
         statisticCheckBox.setSelected(false);
     }
 
     @FXML
-    public void showStatisticPressed(){
+    public void showStatisticPressed() {
         showStatistic = true;
         statisticCheckBox.setSelected(true);
     }
+
     @FXML
     void objectTablePress(ActionEvent event) throws Exception {
         InfoTableController infoTable = new InfoTableController();
@@ -241,7 +248,6 @@ public class Habitat implements Initializable {
         startButton.setDisable(true);
         stopButton.setDisable(false);
     }
-
 
 
     @FXML
@@ -285,22 +291,22 @@ public class Habitat implements Initializable {
         } else if (event.getCode() == KeyCode.M) {
             MenuController menu = new MenuController();
             menu.newWindow(this);
-        } else if(event.getCode() == KeyCode.W){
+        } else if (event.getCode() == KeyCode.W) {
             antRepository.setClassThreadStatus(WarriorAnt.class, true);
-        } else if(event.getCode() == KeyCode.N){
+        } else if (event.getCode() == KeyCode.N) {
             antRepository.setClassThreadStatus(WarriorAnt.class, false);
-        } else if(event.getCode() == KeyCode.O){
+        } else if (event.getCode() == KeyCode.O) {
             antRepository.setClassThreadStatus(WorkerAnt.class, true);
-        } else if(event.getCode() == KeyCode.P){
+        } else if (event.getCode() == KeyCode.P) {
             antRepository.setClassThreadStatus(WorkerAnt.class, false);
-        } else if(event.getCode() == KeyCode.S) {
+        } else if (event.getCode() == KeyCode.S) {
             AntRepository.serializeVectorOfAnts(file);
-        } else if(event.getCode() == KeyCode.D) {
+        } else if (event.getCode() == KeyCode.D) {
             stopSimulation();
             AntRepository.deserializeVectorOfAnts(file);
             startSimulation();
-        }   else if(event.getCode() == KeyCode.C) {
-            tcpConnection.sendMessage("Sex");
+        } else if(event.getCode() == KeyCode.Q){
+
         }
     }
 
@@ -322,7 +328,7 @@ public class Habitat implements Initializable {
 
 
     private void updateAntsInView() throws InterruptedException {
-        synchronized (vectorOfAnt){
+        synchronized (vectorOfAnt) {
             simulationPane.getChildren().removeIf(node ->
                     node instanceof ImageView &&
                             vectorOfAnt.stream().noneMatch(ant -> ant.imageView.equals(node)));
@@ -360,7 +366,7 @@ public class Habitat implements Initializable {
         if (timer != null) {
             timer.cancel();
             timer = null;
-            for(AbstractAnt ant:vectorOfAnt){
+            for (AbstractAnt ant : vectorOfAnt) {
                 ant.killThread();
             }
             vectorOfAnt.clear();
@@ -368,8 +374,18 @@ public class Habitat implements Initializable {
         }
     }
 
-    public void exitApplication(ActionEvent actionEvent) {
+    @FXML
+    public void exitApplication() {
         Platform.exit();
         System.exit(0);
+    }
+
+    private static final javafx.event.EventHandler<WindowEvent> closeEventHandler = event -> {
+        Platform.exit();
+        System.exit(0);
+    };
+
+    public static javafx.event.EventHandler<WindowEvent> getCloseEventHandler() {
+        return closeEventHandler;
     }
 }
