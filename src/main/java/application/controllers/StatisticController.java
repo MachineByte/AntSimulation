@@ -56,7 +56,7 @@ public class StatisticController {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statisticField.fxml"));
         Parent parent = fxmlLoader.load();
-        StatisticController statisticController  = fxmlLoader.getController(); // НЕНАВИЖУ ГЕТАТЬ КОНТРОЛЕРЫ, НО Я В ПОЛНОМ НЕ ПОНИМНИИ КАК ЗАСТАВИТЬ ИНИЦИЛИРОВАТЬСЯ Ё******* ТЕКСТ БОКС, СЕЙЧАС ЧАС НОЧИ, А МНЕ ЕЩЁ С ТАЙМЕРАМИ РАЗБИРАТЬСЯ. ААААААА!
+        StatisticController statisticController  = fxmlLoader.getController();
         Scene scene = new Scene(parent, WIDTH, HEIGHT);
         stage.setScene(scene);
         statisticController.statisticTextArea.setText("Количество рабочих муравьёв:" + antRepository.getWorkerCount() + "\n"+

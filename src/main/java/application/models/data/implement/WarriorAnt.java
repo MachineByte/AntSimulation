@@ -15,7 +15,7 @@ public class WarriorAnt extends AbstractAnt implements IBehaviour, Serializable 
     public static final double DEFAULT_APPEARANCE_CHANCE = 1;
     public static final long DEFAULT_APPEARANCE_TIME = 1000;
     public static final long DEFAULT_LIVE_TIME = 10000;
-    public static final Image IMAGE = new Image("application/controllers/warriorAnt.png");
+    public static final Image IMAGE = new Image("application/controllers/mexicanAnt.png");
     private static double appearanceChance = DEFAULT_APPEARANCE_CHANCE;
     private static long appearanceTime = DEFAULT_APPEARANCE_TIME;
     private static long liveTime = DEFAULT_LIVE_TIME;

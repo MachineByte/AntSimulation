@@ -1,6 +1,7 @@
 package application.controllers;
 
 import application.models.AntRepository;
+import application.models.TcpConnection;
 import application.models.data.AbstractAnt;
 import application.models.data.implement.WarriorAnt;
 import application.models.data.implement.WorkerAnt;
@@ -24,6 +25,8 @@ public class Habitat implements Initializable {
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 700;
     private static final AntRepository antRepository = AntRepository.getInstance();
+
+    private static final TcpConnection tcpConnection = TcpConnection.getInstance();
     private static final Vector<AbstractAnt> vectorOfAnt = antRepository.getVector();
     private static Timer timer = null;
     private static long startTime;
@@ -239,6 +242,8 @@ public class Habitat implements Initializable {
         stopButton.setDisable(false);
     }
 
+
+
     @FXML
     void stopPressed(ActionEvent event) throws Exception {
         if (showStatistic) {
@@ -294,6 +299,8 @@ public class Habitat implements Initializable {
             stopSimulation();
             AntRepository.deserializeVectorOfAnts(file);
             startSimulation();
+        }   else if(event.getCode() == KeyCode.C) {
+            tcpConnection.sendMessage("Sex");
         }
     }
 
